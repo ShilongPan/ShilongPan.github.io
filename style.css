@@ -1,0 +1,226 @@
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --text: #e4e4e7;
+  --muted: #a1a1aa;
+  --accent: #818cf8;
+  --accent-hover: #6366f1;
+  --border: #27272a;
+  --radius: 12px;
+  --max-width: 960px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: var(--accent); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--accent-hover); }
+
+/* ── Navigation ── */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(15, 17, 23, .85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+nav .nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav .logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul a {
+  color: var(--muted);
+  font-size: .95rem;
+  font-weight: 500;
+  transition: color .2s;
+}
+
+nav ul a:hover,
+nav ul a.active {
+  color: var(--text);
+}
+
+/* ── Main Content ── */
+main {
+  flex: 1;
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  letter-spacing: -.02em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
+}
+
+p { color: var(--muted); margin-bottom: 1rem; }
+
+/* ── Hero Section ── */
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+}
+
+.hero h1 { font-size: 3rem; }
+.hero .subtitle {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 560px;
+  margin: .75rem auto 0;
+}
+
+/* ── Card Grid ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: transform .2s, border-color .2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+}
+
+.card p {
+  font-size: .92rem;
+  margin-bottom: 0;
+}
+
+.card .tag {
+  display: inline-block;
+  margin-top: .75rem;
+  font-size: .78rem;
+  background: rgba(129, 140, 248, .15);
+  color: var(--accent);
+  padding: .2rem .6rem;
+  border-radius: 999px;
+}
+
+/* ── Timeline (experiences / resume) ── */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 6px; top: 4px; bottom: 4px;
+  width: 2px; background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute; left: -2rem; top: 6px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+}
+
+.timeline-item .year {
+  font-size: .82rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.timeline-item h3 {
+  font-size: 1.05rem;
+  margin: .25rem 0;
+}
+
+.timeline-item .org {
+  font-size: .92rem;
+  color: var(--muted);
+}
+
+/* ── Photo Grid ── */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.photo-card {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: .85rem;
+  transition: border-color .2s;
+}
+
+.photo-card:hover { border-color: var(--accent); }
+
+/* ── Footer ── */
+footer {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  nav ul { gap: 1rem; }
+  .hero h1 { font-size: 2rem; }
+}
