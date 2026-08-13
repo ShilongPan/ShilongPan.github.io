@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resume</title>
+  <title>Résumé</title>
   <link rel="stylesheet" href="style.css">
-
-
 </head>
 <body>
 
@@ -15,75 +13,154 @@
     <a class="logo" href="index.html">ShilongPan.ca</a>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a class="active" href="resume.html">Resume</a></li>
+      <li><a class="active" href="resume.html">Résumé</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="photos.html">Photos</a></li>
       <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="blog.html">Blog</a></li>
     </ul>
   </div>
 </nav>
 
-<main>
-  <h1>Resume</h1>
+<main class="resume-page">
+  <h1>Résumé</h1>
   <p>Education, skills, and a snapshot of my career so far.</p>
 
-  <h2>Education</h2>
-  <div class="timeline">
-    <div class="timeline-item">
-      <span class="year">2018 — 2022</span>
-      <h3>Bachelor of Science in Biochemistry and Molecular Biology</h3>
-      <p class="org">University of British Columbia</p>
-      <p>Honours Thesis and Specialization in Medical and Molecular Biology</p>
-    </div>
-  </div>
-  <div class="timeline">
-    <div class="timeline-item">
-      <span class="year">2022 — 2026</span>
-      <h3>Master of Science in Chemistry</h3>
-      <p class="org">University of British Columbia</p>
-      <p>Thesis-based program developing a Multifunctional Nanoparticle Size Analysis Technology for use with Extracellular Vesicles.</p>
-    </div>
-  </div>
-  <h2>Skills</h2>
-  <div class="card-grid">
-    <div class="card">
-      <h3>Languages</h3>
-      <p>Python, JavaScript, TypeScript, Go, SQL</p>
-    </div>
-    <div class="card">
-      <h3>Frameworks</h3>
-      <p>React, Node.js, FastAPI, Docker</p>
-    </div>
-    <div class="card">
-      <h3>Tools</h3>
-      <p>Git, GitHub Actions, Linux, Figma</p>
-    </div>
-    <div class="card">
-      <h3>Soft Skills</h3>
-      <p>Team leadership, technical writing, communication</p>
-    </div>
-  </div>
+  <div class="resume-columns">
 
-  <h2>Work Experience</h2>
-  <div class="timeline">
-    <div class="timeline-item">
-      <span class="year">2024 — Present</span>
-      <h3>Software Engineer</h3>
-      <p class="org">Acme Corp</p>
-      <p>Built internal tools and APIs serving 50+ teams. Reduced deployment time by 40%.</p>
+    <!-- ── Primary (left) column ── -->
+    <div class="resume-primary">
+
+      <h2>Education</h2>
+      <div class="timeline">
+        <div class="timeline-item" data-skills="research,python,data-analysis,technical-writing,lab-techniques">
+          <span class="year">2018 — 2022</span>
+          <h3>Bachelor of Science in Biochemistry and Molecular Biology</h3>
+          <p class="org">University of British Columbia</p>
+          <p>Honours Thesis and Specialization in Medical and Molecular Biology</p>
+        </div>
+        <div class="timeline-item" data-skills="research,python,data-analysis,technical-writing,lab-techniques,presentation">
+          <span class="year">2022 — 2026</span>
+          <h3>Master of Science in Chemistry</h3>
+          <p class="org">University of British Columbia</p>
+          <p>Thesis-based program developing a Multifunctional Nanoparticle Size Analysis Technology for use with Extracellular Vesicles.</p>
+        </div>
+      </div>
+
+      <h2>Work Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item" data-skills="javascript,typescript,react,node.js,docker,git,api-design,team-leadership,communication">
+          <span class="year">2024 — Present</span>
+          <h3>Software Engineer</h3>
+          <p class="org">Acme Corp</p>
+          <p>Built internal tools and APIs serving 50+ teams. Reduced deployment time by 40%.</p>
+        </div>
+        <div class="timeline-item" data-skills="javascript,react,data-analysis,technical-writing,communication,presentation">
+          <span class="year">Summer 2023</span>
+          <h3>Engineering Intern</h3>
+          <p class="org">StartupXYZ</p>
+          <p>Developed a real-time dashboard used by the entire product team.</p>
+        </div>
+      </div>
+
+      <h2>Other Experiences</h2>
+      <div class="timeline">
+        <div class="timeline-item" data-skills="python,go,sql,git,linux,technical-writing,team-leadership">
+          <span class="year">2023</span>
+          <h3>Open Source Contributor</h3>
+          <p class="org">Various Projects</p>
+          <p>Contributed to open-source tools and libraries, improving documentation and adding features.</p>
+        </div>
+        <div class="timeline-item" data-skills="presentation,communication,team-leadership">
+          <span class="year">2022</span>
+          <h3>Science Outreach Volunteer</h3>
+          <p class="org">UBC Science Centre</p>
+          <p>Led interactive workshops for high school students on molecular biology and research methods.</p>
+        </div>
+      </div>
+
     </div>
-    <div class="timeline-item">
-      <span class="year">Summer 2023</span>
-      <h3>Engineering Intern</h3>
-      <p class="org">StartupXYZ</p>
-      <p>Developed a real-time dashboard used by the entire product team.</p>
+
+    <!-- ── Secondary (right) column ── -->
+    <div class="resume-secondary">
+      <h2>Skills</h2>
+
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <ul class="skill-list">
+          <li class="skill-item" data-id="python">Python</li>
+          <li class="skill-item" data-id="javascript">JavaScript</li>
+          <li class="skill-item" data-id="typescript">TypeScript</li>
+          <li class="skill-item" data-id="go">Go</li>
+          <li class="skill-item" data-id="sql">SQL</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>Frameworks & Tools</h3>
+        <ul class="skill-list">
+          <li class="skill-item" data-id="react">React</li>
+          <li class="skill-item" data-id="node.js">Node.js</li>
+          <li class="skill-item" data-id="fastapi">FastAPI</li>
+          <li class="skill-item" data-id="docker">Docker</li>
+          <li class="skill-item" data-id="git">Git</li>
+          <li class="skill-item" data-id="linux">Linux</li>
+          <li class="skill-item" data-id="figma">Figma</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>Technical</h3>
+        <ul class="skill-list">
+          <li class="skill-item" data-id="api-design">API Design</li>
+          <li class="skill-item" data-id="data-analysis">Data Analysis</li>
+          <li class="skill-item" data-id="research">Research</li>
+          <li class="skill-item" data-id="technical-writing">Technical Writing</li>
+          <li class="skill-item" data-id="lab-techniques">Lab Techniques</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>Soft Skills</h3>
+        <ul class="skill-list">
+          <li class="skill-item" data-id="team-leadership">Team Leadership</li>
+          <li class="skill-item" data-id="communication">Communication</li>
+          <li class="skill-item" data-id="presentation">Presentation</li>
+        </ul>
+      </div>
+
     </div>
+
   </div>
 </main>
 
 <footer>
   <p>&copy; 2026 Shilong Pan. Built with plain HTML &amp; CSS using locally hosted AI tools.</p>
 </footer>
+
+<script>
+  // On hover over a timeline item, highlight the matching skills in the sidebar
+  (function () {
+    const timelineItems = document.querySelectorAll('.timeline-item[data-skills]');
+    const skillItems    = document.querySelectorAll('.skill-item[data-id]');
+
+    timelineItems.forEach(function (item) {
+      item.addEventListener('mouseenter', function () {
+        var ids = this.getAttribute('data-skills').split(',');
+        skillItems.forEach(function (skill) {
+          if (ids.indexOf(skill.getAttribute('data-id')) !== -1) {
+            skill.classList.add('highlighted');
+          }
+        });
+      });
+      item.addEventListener('mouseleave', function () {
+        skillItems.forEach(function (skill) {
+          skill.classList.remove('highlighted');
+        });
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>
