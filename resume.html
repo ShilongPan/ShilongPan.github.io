@@ -137,25 +137,45 @@
 </footer>
 
 <script>
-  // On hover over a timeline item, highlight the matching skills in the sidebar
+  // Bidirectional highlighting: hover experience → highlight skills, hover skill → highlight experiences
   (function () {
-    const timelineItems = document.querySelectorAll('.timeline-item[data-skills]');
-    const skillItems    = document.querySelectorAll('.skill-item[data-id]');
+    var timelineItems = document.querySelectorAll('.timeline-item[data-skills]');
+    var skillItems    = document.querySelectorAll('.skill-item[data-id]');
 
+    // Clear all highlights
+    function clearAll() {
+      timelineItems.forEach(function (item) { item.classList.remove('highlighted'); });
+      skillItems.forEach(function (skill) { skill.classList.remove('highlighted'); });
+    }
+
+    // Hover over a timeline item → highlight matching skills
     timelineItems.forEach(function (item) {
       item.addEventListener('mouseenter', function () {
+        clearAll();
         var ids = this.getAttribute('data-skills').split(',');
+        this.classList.add('highlighted');
         skillItems.forEach(function (skill) {
           if (ids.indexOf(skill.getAttribute('data-id')) !== -1) {
             skill.classList.add('highlighted');
           }
         });
       });
-      item.addEventListener('mouseleave', function () {
-        skillItems.forEach(function (skill) {
-          skill.classList.remove('highlighted');
+      item.addEventListener('mouseleave', function () { clearAll(); });
+    });
+
+    // Hover over a skill → highlight matching timeline items
+    skillItems.forEach(function (skill) {
+      skill.addEventListener('mouseenter', function () {
+        clearAll();
+        var id = this.getAttribute('data-id');
+        this.classList.add('highlighted');
+        timelineItems.forEach(function (item) {
+          if (item.getAttribute('data-skills').split(',').indexOf(id) !== -1) {
+            item.classList.add('highlighted');
+          }
         });
       });
+      skill.addEventListener('mouseleave', function () { clearAll(); });
     });
   })();
 </script>
