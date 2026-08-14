@@ -472,9 +472,83 @@ footer {
   .resume-columns {
     grid-template-columns: 1fr;
   }
+
+  /* ── Skills panel: slide-out from the right ── */
   .resume-secondary {
-    position: static;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(320px, 85vw);
+    height: 100vh;
+    background: var(--surface);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, .15);
+    padding: 3.5rem 1.5rem 2rem;
+    overflow-y: auto;
+    z-index: 100;
+    transform: translateX(100%);
+    transition: transform .3s ease;
   }
+
+  .resume-secondary.open {
+    transform: translateX(0);
+  }
+
+  /* Dark backdrop behind the panel */
+  .resume-secondary::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .35);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .3s ease;
+    pointer-events: none;
+  }
+
+  .resume-secondary.open::before {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Close button */
+  .skills-close {
+    display: block;
+    position: sticky;
+    float: right;
+    top: .5rem;
+    margin-top: -2.5rem;
+    margin-right: -.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 1.6rem;
+    line-height: 1;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+    transition: background .2s;
+    z-index: 1;
+  }
+
+  .skills-close:hover {
+    background: var(--bg);
+  }
+
+  /* Make timeline items look tappable on mobile */
+  .timeline-item[data-skills] {
+    cursor: pointer;
+  }
+
+  .timeline-item[data-skills]:active {
+    background: rgba(29, 53, 87, .08);
+  }
+}
+
+/* Hide the close button on desktop */
+.skills-close {
+  display: none;
 }
 
 @media (max-width: 600px) {

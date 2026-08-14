@@ -80,7 +80,8 @@
     </div>
 
     <!-- ── Secondary (right) column ── -->
-    <div class="resume-secondary">
+    <div class="resume-secondary" id="skillsPanel">
+      <button class="skills-close" id="skillsClose" aria-label="Close skills panel">&times;</button>
       <h2>Skills</h2>
 
       <div class="skill-group">
@@ -137,10 +138,12 @@
 </footer>
 
 <script>
-  // Bidirectional highlighting: hover experience → highlight skills, hover skill → highlight experiences
+  // Bidirectional highlighting + mobile slide-out skills panel
   (function () {
     var timelineItems = document.querySelectorAll('.timeline-item[data-skills]');
     var skillItems    = document.querySelectorAll('.skill-item[data-id]');
+    var panel         = document.getElementById('skillsPanel');
+    var closeBtn      = document.getElementById('skillsClose');
 
     // Clear all highlights
     function clearAll() {
@@ -148,9 +151,51 @@
       skillItems.forEach(function (skill) { skill.classList.remove('highlighted'); });
     }
 
-    // Hover over a timeline item → highlight matching skills
+    // ── Mobile: slide-out panel ──
+    function isMobile() { return window.matchMedia('(max-width: 900px)').matches; }
+
+    function openPanel()  { if (panel) panel.classList.add('open'); }
+    function closePanel() { if (panel) panel.classList.remove('open'); }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        closePanel();
+        clearAll();
+      });
+    }
+
+    // Close panel when tapping the backdrop
+    document.addEventListener('click', function (e) {
+      if (!isMobile() || !panel) return;
+      if (panel.classList.contains('open') &&
+          !panel.contains(e.target) &&
+          !e.target.closest('.timeline-item[data-skills]')) {
+        closePanel();
+        clearAll();
+      }
+    });
+
+    // Tap a timeline item on mobile → open panel + highlight matching skills
+    timelineItems.forEach(function (item) {
+      item.addEventListener('click', function () {
+        if (!isMobile()) return;
+        clearAll();
+        var ids = this.getAttribute('data-skills').split(',');
+        this.classList.add('highlighted');
+        skillItems.forEach(function (skill) {
+          if (ids.indexOf(skill.getAttribute('data-id')) !== -1) {
+            skill.classList.add('highlighted');
+          }
+        });
+        openPanel();
+      });
+    });
+
+    // ── Desktop: hover highlighting (unchanged) ──
     timelineItems.forEach(function (item) {
       item.addEventListener('mouseenter', function () {
+        if (isMobile()) return; // let tap handle it on mobile
         clearAll();
         var ids = this.getAttribute('data-skills').split(',');
         this.classList.add('highlighted');
@@ -160,12 +205,15 @@
           }
         });
       });
-      item.addEventListener('mouseleave', function () { clearAll(); });
+      item.addEventListener('mouseleave', function () {
+        if (isMobile()) return;
+        clearAll();
+      });
     });
 
-    // Hover over a skill → highlight matching timeline items
     skillItems.forEach(function (skill) {
       skill.addEventListener('mouseenter', function () {
+        if (isMobile()) return;
         clearAll();
         var id = this.getAttribute('data-id');
         this.classList.add('highlighted');
@@ -175,7 +223,10 @@
           }
         });
       });
-      skill.addEventListener('mouseleave', function () { clearAll(); });
+      skill.addEventListener('mouseleave', function () {
+        if (isMobile()) return;
+        clearAll();
+      });
     });
   })();
 </script>
