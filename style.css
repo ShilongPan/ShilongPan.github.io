@@ -395,6 +395,18 @@ footer {
   color: #fff;
 }
 
+/* ── Resume profile blurb ── */
+.resume-profile {
+  background: var(--surface);
+  border-left: 4px solid var(--accent);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
 /* ── Resume two-column layout ── */
 .resume-columns {
   display: grid;
