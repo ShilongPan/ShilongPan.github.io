@@ -29,6 +29,10 @@ body {
 a { color: var(--accent); text-decoration: none; transition: color .2s; }
 a:hover { color: var(--accent-lt); }
 
+@view-transition {
+navigation: auto;
+}
+
 /* ── Navigation ── */
 nav {
   position: sticky;
@@ -656,4 +660,58 @@ body::after {
   opacity: 0.35;
   pointer-events: none;
   z-index: 1;
+}
+
+/* ── Contact Page ── */
+.contact-section {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.contact-section h1 {
+  margin-bottom: .5rem;
+}
+
+.contact-section > p {
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  padding: 2rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+
+.contact-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 53, 87, .1);
+}
+
+.contact-icon {
+  font-size: 2rem;
+}
+
+.contact-label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.contact-detail {
+  font-size: .85rem;
+  color: var(--muted);
 }
