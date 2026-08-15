@@ -34,7 +34,17 @@
     <!-- ── Primary (left) column ── -->
     <div class="resume-primary">
 
-      <h2>Education</h2>
+      <div class="resume-tabs" role="tablist" aria-label="Résumé sections">
+        <button class="resume-tab active" id="tab-education" role="tab"
+                aria-selected="true"  aria-controls="panel-education">Education</button>
+        <button class="resume-tab" id="tab-employment" role="tab"
+                aria-selected="false" aria-controls="panel-employment">Employment</button>
+        <button class="resume-tab" id="tab-experiences" role="tab"
+                aria-selected="false" aria-controls="panel-experiences">Experiences</button>
+      </div>
+
+      <div class="resume-panel" id="panel-education" role="tabpanel"
+           aria-labelledby="tab-education">
       <div class="timeline">
         <div class="timeline-item" data-skills="research,python,data-analysis,technical-writing,lab-techniques">
           <span class="year">2018 — 2022</span>
@@ -49,8 +59,10 @@
           <p>Thesis-based program developing a Multifunctional Nanoparticle Size Analysis Technology for use with Extracellular Vesicles.</p>
         </div>
       </div>
+      </div>
 
-      <h2>Employment</h2>
+      <div class="resume-panel" id="panel-employment" role="tabpanel"
+           aria-labelledby="tab-employment" hidden>
       <div class="timeline">
         <!-- Research &amp; Lab Work -->
         <div class="timeline-item" data-skills="research,technical-writing,presentation,lab-techniques,communication,supervision,mentorship,leadership,problem-solving,project-management,experimental-design,scientific-communication">
@@ -108,8 +120,10 @@
           <p>In a small team, planned and ran a program for international students remaining on campus over the winter break. Created fun, inclusive experiences for people of diverse backgrounds to experience Canadian culture with events like curling, skiing, and cooking nights.</p>
         </div>
       </div>
+      </div>
 
-      <h2>Experiences</h2>
+      <div class="resume-panel" id="panel-experiences" role="tabpanel"
+           aria-labelledby="tab-experiences" hidden>
       <div class="timeline">
         <!-- Lab Organization -->
         <div class="timeline-item" data-skills="problem-solving,supervision,communication">
@@ -150,6 +164,7 @@
           <p class="org">Department of Chemistry, UBCO<br><a href="https://students.ok.bc.ca">View Site</a></p>
           <p>Advocated for graduate students, organized social and networking events, and improved lab safety facilities. Addressed student concerns and promoted wellbeing across the department.</p>
         </div>
+      </div>
       </div>
 
     </div>  <!-- End of primary column -->
@@ -246,6 +261,44 @@
     function clearAll() {
       timelineItems.forEach(function (item) { item.classList.remove('highlighted'); });
       skillItems.forEach(function (skill) { skill.classList.remove('highlighted'); });
+    }
+
+    // ── Tabs: switch panels ──
+    var tabs    = document.querySelectorAll('.resume-tab');
+    var panels  = document.querySelectorAll('.resume-panel');
+
+    function activateTab(tab) {
+      panels.forEach(function (p) { p.hidden = true; });
+      var panel = document.getElementById('panel-' + tab.id.replace('tab-', ''));
+      if (panel) panel.hidden = false;
+      tabs.forEach(function (t) {
+        var selected = (t === tab);
+        t.classList.toggle('active', selected);
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
+      clearAll();
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { activateTab(this); });
+    });
+
+    // Keyboard navigation on the tablist (arrows wrap, Home/End jump)
+    var tablist = document.querySelector('.resume-tabs');
+    if (tablist) {
+      tablist.addEventListener('keydown', function (e) {
+        var i = Array.prototype.indexOf.call(tabs, e.target);
+        if (i === -1) return;
+        var next = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = tabs.length - 1;
+        else return;
+        e.preventDefault();
+        tabs[next].focus();
+        activateTab(tabs[next]);
+      });
     }
 
     // ── Mobile: slide-out panel ──

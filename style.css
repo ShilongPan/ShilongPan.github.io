@@ -854,3 +854,39 @@ body::after {
   font-size: .85rem;
   color: var(--muted);
 }
+
+/* ── Resume tabs ── */
+.resume-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.resume-tab {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  font: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color .2s, border-color .2s;
+}
+
+.resume-tab:hover {
+  color: var(--accent-lt);
+}
+
+.resume-tab.active {
+  color: var(--text);
+  font-weight: 700;
+  border-bottom-color: var(--accent);
+}
+
+.resume-panel[hidden] {
+  display: none;
+}
