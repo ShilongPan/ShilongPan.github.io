@@ -57,6 +57,7 @@ nav .logo {
   font-size: 1.2rem;
   color: var(--text);
   letter-spacing: .04em;
+  white-space: nowrap;
 }
 
 nav ul {
@@ -575,6 +576,13 @@ footer {
   h2::after { width: 36px; }
 }
 
+/* Narrow screens: shorten the logo instead of letting it stack */
+@media (max-width: 480px) {
+  .logo-surname {
+    display: none;
+  }
+}
+
 /* ── Blog post list (horizontal bars) ── */
 .post-list {
   display: flex;
@@ -660,6 +668,7 @@ footer {
 
 .post-card-thumb {
   flex: 0 0 180px;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   background: var(--bg);
 }
@@ -724,8 +733,9 @@ footer {
 }
 
 @media (max-width: 600px) {
+  /* Hide the thumbnail entirely on narrow screens — text only */
   .post-card-thumb {
-    flex: 0 0 120px;
+    display: none;
   }
   .post-card-body {
     padding: 1rem;
@@ -739,6 +749,16 @@ footer {
 }
 
 /* ── Blog ── */
+.back-link {
+  display: inline-block;
+  font-size: .85rem;
+  font-weight: 500;
+  letter-spacing: .02em;
+  margin-bottom: 1.25rem;
+}
+.back-link:hover {
+  color: var(--accent-lt);
+}
 .blog-post h1 {
   margin-bottom: .5rem;
 }

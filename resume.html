@@ -10,7 +10,7 @@
 
 <nav>
   <div class="nav-inner">
-    <a class="logo" href="index.html">Shilong Pan</a>
+    <a class="logo" href="index.html" title="Shilong Pan">Shilong<span class="logo-surname"> Pan</span></a>
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a class="active" href="resume.html">Résumé</a></li>
@@ -66,23 +66,66 @@
         </div>
       </div>
 
-      <h2>Experiences</h2>
+      <h2>Experiences &amp; Service&nbsp;&nbsp;<span class="subtitle">Volunteering, peer mentorship, and non-academic roles</span></h2>
       <div class="timeline">
-        <div class="timeline-item" data-skills="python,go,sql,git,linux,technical-writing,team-leadership">
-          <span class="year">2023</span>
-          <h3>Open Source Contributor</h3>
-          <p class="org">Various Projects</p>
-          <p>Contributed to open-source tools and libraries, improving documentation and adding features.</p>
+        <!-- Research &amp; Lab Work -->
+        <div class="timeline-item" data-skills="research,technical-writing,presentation,lab-techniques,communication,supervision,mentorship,leadership,problem-solving">
+          <span class="year">2018 — 2025</span>
+          <h3>Undergraduate Research Assistant — Honors Thesis</h3>
+          <p class="org">Single Molecule Mechanobiology Lab<br><a href="https://vlab.occ.ca">View Site</a></p>
+          <p>Validated extracellular vesicle labelling protocols for analytical techniques, integrating my professor's feedback plans. Wrote a 70-page thesis documenting work using language suitable for my committee members.</p>
         </div>
-        <div class="timeline-item" data-skills="presentation,communication,team-leadership">
-          <span class="year">2022</span>
-          <h3>Science Outreach Volunteer</h3>
-          <p class="org">UBC Science Centre</p>
-          <p>Led interactive workshops for high school students on molecular biology and research methods.</p>
+        <div class="timeline-divider"></div>
+        <!-- Lab Organization -->
+        <div class="timeline-item" data-skills="organization,logistics,lab-management,maintenance,custodial,problem-solving,technical-support,supervision,communication">
+          <span class="year">2022 — 2025</span>
+          <h3>Lab Organization and Management</h3>
+          <p class="org">Single Molecule Mechanobiology Lab<br><a href="https://ilab.occ.ca">View Site</a></p>
+          <p>Handled technical duties in the lab to improve quality of life for supervisor and colleagues. Filed maintenance requests, processed biologically hazardous waste, managed equipment like freezers, microscopes, and 3D printers.</p>
+        </div>
+        <div class="timeline-divider"></div>
+        <!-- Wellness Peer -->
+        <div class="timeline-item" data-skills="communication,empathy,mentorship,health-promotion,service,education,volunteerism,accessibility,awareness">
+          <span class="year">2021 — 2025</span>
+          <h3>Wellness Peer</h3>
+          <p class="org">Kelowna General Hospital<br><a href="https://students.ok.bc.ca/health-wellness">View Site</a></p>
+          <p>Greeted visitors at the hospital front desk, guided them to loved ones, helped patients with mobility issues in wheelchairs. Reviewed track of psychiatric patients with roaming privileges and trained new volunteers.</p>
+        </div>
+        <div class="timeline-divider"></div>
+        <!-- Career Peer Mentor -->
+        <div class="timeline-item" data-skills="mentoring,career-advice,resume-writing,job-search,communication,leadership,education,career-development,teaching,supervision">
+          <span class="year">2020 — 2021</span>
+          <h3>Career Peer Mentor</h3>
+          <p class="org">Career and Experience Office, UBC<br><a href="https://students.ok.bc.ca/career-experience">View Site</a></p>
+          <p>Developed key points for writing resumes and cover letters with a team and applied those concepts to teaching students how to find and apply to jobs. Adapted curriculum to help first years getting their first jobs or well-supported career progress.</p>
+        </div>
+        <div class="timeline-divider"></div>
+        <!-- Volunteer Experiences -->
+        <div class="timeline-item" data-skills="volunteerism,photography,community-support,philanthropy,event-organization,fundraising,social-outreach,education,communication,mentoring">
+          <span class="year">2018 — 2025</span>
+          <h3>Diverse Volunteer Experiences</h3>
+          <p class="org">Do Some Good<br><a href="https://dosomegood.ca/user/profile/c3Q7bRKWjDWP5IqeQd/volunteerism">View Site</a></p>
+          <p>Participated in various causes as opportunities presented themselves to participate in my community and search for causes I most identify with. Taken photos for charities, MC fundraisers for MS, set up various events, managed blood donors.</p>
+        </div>
+        <div class="timeline-divider"></div>
+        <!-- Conference Planning -->
+        <div class="timeline-item" data-skills="logistics,project-management,communication,event-organization,team-leadership,collaboration,leadership">
+          <span class="year">2018 — 2020</span>
+          <h3>Conference Planning Coordinator</h3>
+          <p class="org">University of British Columbia Okanagan, Single Molecule Mechanobiology Lab<br><a href="https://ilab.occ.ca/conference/ocbc2022">View Site</a></p>
+          <p>Charged a research conference to promote collaboration between biophysics researchers in North America. Managed team of 10 people, assigning roles, managing budget and deadlines, making challenging decisions.</p>
+        </div>
+        <div class="timeline-divider"></div>
+        <!-- Summer Programming Coordinator -->
+        <div class="timeline-item" data-skills="program-coordination,event-management,leadership,team-leadership,communication,mentoring">
+          <span class="year">2018 — 2019</span>
+          <h3>Winter Programming Coordinator</h3>
+          <p class="org">UBCO Global Engagement Office<br><a href="https://students.ok.bc.ca/about-the-ap-students-portfolio/directory/global-engagement-office">View Site</a></p>
+          <p>In a small team, planned and ran a program for international students remaining on campus over the winter break. Created fun, inclusive experiences for people of diverse backgrounds to experience Canadian culture with events like curling, skiing, and cooking nights.</p>
         </div>
       </div>
 
-    </div>
+    </div>  <!-- End of primary column -->
 
     <!-- ── Secondary (right) column ── -->
     <div class="resume-secondary" id="skillsPanel">
@@ -179,6 +222,17 @@
         e.stopPropagation();
         closePanel();
         clearAll();
+      });
+    }
+
+    // Tap the open panel itself on mobile → close it again
+    if (panel) {
+      panel.addEventListener('click', function () {
+        if (!isMobile()) return;
+        if (panel.classList.contains('open')) {
+          closePanel();
+          clearAll();
+        }
       });
     }
 
