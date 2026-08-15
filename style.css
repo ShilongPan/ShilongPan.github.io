@@ -816,10 +816,18 @@ body::after {
   margin-bottom: 2rem;
 }
 
+/* 3x1 (stacked column) by default; switches to 1x3 (single row) at
+   640px, so a 2+1 layout never appears at any screen size. */
 .contact-links {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .contact-links {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .contact-card {
