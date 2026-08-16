@@ -14,25 +14,7 @@ highlighter: rouge
 baseurl: ""
 url: ""
 
-# ── Permalinks ──
-permalink: /blog/:year/:month/:day/:title/
-
-# ── Collections (optional, for future use) ──
-collections:
-  posts:
-    output: true
-    permalink: /blog/:year/:month/:day/:title/
-
-# ── Defaults ──
-defaults:
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: post
-      share: true
-
-# ── Plugins ──
+# ── Plugins (from Gemfile) ──
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
