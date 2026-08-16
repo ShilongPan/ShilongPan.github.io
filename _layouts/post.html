@@ -18,6 +18,15 @@ layout: default
       {% endif %}
     </header>
 
+    {% if page.thumbnail %}
+    <div class="blog-image">
+      <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }}">
+      {% if page.caption %}
+      <span class="image-caption">{{ page.caption }}</span>
+      {% endif %}
+    </div>
+    {% endif %}
+
     <div class="post-content">
       {{ content }}
     </div>

@@ -8,10 +8,15 @@ title: Blog
   <div class="post-list">
     {% for post in site.posts %}
     <a href="{{ post.url | relative_url }}" class="post-card">
+      {% if post.thumbnail %}
+      <div class="post-card-thumb">
+        <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}">
+      </div>
+      {% endif %}
       <div class="post-card-body">
         <span class="post-card-date">{{ post.date | date: "%B %d, %Y" }}</span>
         <span class="post-card-title">{{ post.title }}</span>
-        <span class="post-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</span>
+        <span class="post-card-excerpt">{{ post.abstract | default: post.excerpt | strip_html | truncatewords: 30 }}</span>
       </div>
       <span class="post-card-arrow">→</span>
     </a>
