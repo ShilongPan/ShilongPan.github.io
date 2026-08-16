@@ -262,6 +262,8 @@ p { color: var(--muted); margin-bottom: 1rem; }
   padding: 1.75rem;
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
@@ -286,7 +288,7 @@ p { color: var(--muted); margin-bottom: 1rem; }
 
 .card .tag {
   display: inline-block;
-  margin-top: 1rem;
+  margin-top: auto;
   font-size: .75rem;
   font-weight: 600;
   letter-spacing: .06em;
@@ -518,11 +520,17 @@ footer {
     height: 100dvh;
     background: var(--surface);
     box-shadow: -4px 0 24px rgba(0, 0, 0, .15);
-    padding: 3.5rem 1.5rem 2rem;
-    overflow-y: auto;
     z-index: 100;
     transform: translateX(100%);
     transition: transform .3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skills-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 3.5rem 1.5rem 2rem;
   }
 
   .resume-secondary.open {
@@ -549,11 +557,9 @@ footer {
   /* Close button */
   .skills-close {
     display: block;
-    position: sticky;
-    float: right;
-    top: .5rem;
-    margin-top: -2.5rem;
-    margin-right: -.5rem;
+    position: absolute;
+    top: .75rem;
+    right: .75rem;
     width: 2.5rem;
     height: 2.5rem;
     border: none;
@@ -599,6 +605,27 @@ footer {
 @media (max-width: 480px) {
   .logo-surname {
     display: none;
+  }
+
+  /* Add more space between logo and nav items */
+  .logo {
+    margin-right: 1rem;
+  }
+}
+
+/* Very narrow screens: show only the surname */
+@media (max-width: 360px) {
+  .logo-given {
+    display: none;
+  }
+
+  .logo-surname {
+    display: inline;
+  }
+
+  /* Add more space between logo and nav items */
+  .logo {
+    margin-right: 1rem;
   }
 }
 
