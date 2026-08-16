@@ -1,0 +1,20 @@
+---
+layout: default
+title: Blog
+---
+
+<main>
+  <h1>Blog</h1>
+  <div class="post-list">
+    {% for post in site.posts %}
+    <a href="{{ post.url | relative_url }}" class="post-card">
+      <div class="post-card-body">
+        <span class="post-card-date">{{ post.date | date: "%B %d, %Y" }}</span>
+        <span class="post-card-title">{{ post.title }}</span>
+        <span class="post-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</span>
+      </div>
+      <span class="post-card-arrow">→</span>
+    </a>
+    {% endfor %}
+  </div>
+</main>

@@ -1,3 +1,52 @@
-theme: jekyll-theme-minimal
+# ── Site Identity ──
 title: Shilong Pan
 description: Personal website for CV, projects, and more.
+tagline: Developer, researcher, builder.
+
+# ── Theme ──
+# theme: jekyll-theme-minimal  # Removed — using custom _layouts/ instead
+
+# ── Jekyll Settings ──
+markdown: kramdown
+highlighter: rouge
+
+# ── URL / Base ──
+baseurl: ""
+url: ""
+
+# ── Permalinks ──
+permalink: /blog/:year/:month/:day/:title/
+
+# ── Collections (optional, for future use) ──
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# ── Defaults ──
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      share: true
+
+# ── Plugins ──
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# ── Feed ──
+feed:
+  path: feed.xml
+
+# ── Exclude ──
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - _sass

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }}{% else %}Shilong Pan{% endif %}</title>
+  <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" id="profile-trigger" href="{{ '/' | relative_url }}" title="Shilong Pan"><span class="logo-given">Shilong</span><span class="logo-surname"> Pan</span></a>
+    <ul>
+      <li><a href="{{ '/index.html' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+      <li><a href="{{ '/resume.html' | relative_url }}" {% if page.url contains 'resume' %}class="active"{% endif %}>Résumé</a></li>
+      <li><a href="{{ '/projects.html' | relative_url }}" {% if page.url contains 'projects' %}class="active"{% endif %}>Projects</a></li>
+      <li><a href="{{ '/blog.html' | relative_url }}" {% if page.url contains 'blog' %}class="active"{% endif %}>Blog</a></li>
+      <li><a href="{{ '/contact.html' | relative_url }}" {% if page.url contains 'contact' %}class="active"{% endif %}>Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+{{ content }}
+
+<footer>
+  <p>&copy; {{ site.time | date: "%Y" }} Shilong Pan. Built using locally hosted AI tools.</p>
+</footer>
+
+<!-- Profile Popup -->
+<div class="profile-popup-overlay" id="profile-popup-overlay">
+  <div class="profile-popup">
+    <button class="profile-popup-close" aria-label="Close">&times;</button>
+    <img id="profile-popup-portrait" src="" alt="Shilong Pan" class="profile-popup-portrait" />
+    <div class="profile-popup-name">Shilong Pan</div>
+    <div class="profile-popup-bio">Hi, in case we haven't met,<br>here's what I look like!</div>
+  </div>
+</div>
+
+<script src="{{ '/profile-popup.js' | relative_url }}"></script>
+
+</body>
+</html>
