@@ -839,7 +839,6 @@ footer {
   height: auto;
   display: block;
   border: 1px solid var(--border);
-  border-top: 3px solid var(--accent);
   background: var(--surface);
 }
 
