@@ -1,14 +1,10 @@
----
-title: Home
----
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+  <title>Home</title>
+  <link rel="stylesheet" href="style.css">
   
   
 </head>
@@ -39,17 +35,14 @@ title: Home
 
 <main>
   <!-- Latest Section -->
-  {% assign latest = site.posts.first %}
-  {% if latest %}
   <section class="latest-section">
     <h2>Latest</h2>
-    <a href="{{ latest.url | relative_url }}" class="latest-card">
+    <a href="/blog/2026-08-14-building-a-website/" class="latest-card">
       <span class="latest-type">Blog</span>
-      <span class="latest-title">New blog post: {{ latest.title }}</span>
+      <span class="latest-title">New blog post: Building a Website</span>
       <span class="latest-arrow">→</span>
     </a>
   </section>
-  {% endif %}
 
   <!-- Explore Section -->
   <section class="explore-section">
