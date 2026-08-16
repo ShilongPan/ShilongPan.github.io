@@ -354,6 +354,25 @@
     function clearAll() {
       timelineItems.forEach(function (item) { item.classList.remove('highlighted'); });
       skillItems.forEach(function (skill) { skill.classList.remove('highlighted'); });
+      // Restore all skill items and groups when clearing
+      skillItems.forEach(function (skill) { skill.style.display = ''; });
+      document.querySelectorAll('.skill-group').forEach(function (group) { group.style.display = ''; });
+    }
+
+    // Filter skill items to only show those whose data-id is in the given set
+    function filterSkills(ids) {
+      skillItems.forEach(function (skill) {
+        skill.style.display = ids.indexOf(skill.getAttribute('data-id')) !== -1 ? '' : 'none';
+      });
+      // Hide skill groups that have no visible items
+      document.querySelectorAll('.skill-group').forEach(function (group) {
+        var visible = group.querySelectorAll('.skill-item[style="display: "], .skill-item:not([style])');
+        var hasVisible = false;
+        group.querySelectorAll('.skill-item').forEach(function (s) {
+          if (s.style.display !== 'none') hasVisible = true;
+        });
+        group.style.display = hasVisible ? '' : 'none';
+      });
     }
 
     // ── Tabs: switch panels ──
@@ -446,10 +465,37 @@
       });
     });
 
-    // ── Desktop: hover highlighting (unchanged) ──
+    // ── Desktop: click to pin highlight, hover to preview ──
+    var pinnedItem = null;
+
+    function pinHighlight(item) {
+      clearAll();
+      var ids = item.getAttribute('data-skills').split(',');
+      item.classList.add('highlighted');
+      skillItems.forEach(function (skill) {
+        if (ids.indexOf(skill.getAttribute('data-id')) !== -1) {
+          skill.classList.add('highlighted');
+        }
+      });
+      filterSkills(ids);
+      pinnedItem = item;
+    }
+
     timelineItems.forEach(function (item) {
-      item.addEventListener('mouseenter', function () {
+      item.addEventListener('click', function () {
         if (isMobile()) return; // let tap handle it on mobile
+        if (pinnedItem === item) {
+          // Unpin if clicking the same item
+          clearAll();
+          pinnedItem = null;
+        } else {
+          pinHighlight(item);
+        }
+      });
+
+      item.addEventListener('mouseenter', function () {
+        if (isMobile()) return;
+        if (pinnedItem) return; // don't override pinned selection
         clearAll();
         var ids = this.getAttribute('data-skills').split(',');
         this.classList.add('highlighted');
@@ -461,13 +507,26 @@
       });
       item.addEventListener('mouseleave', function () {
         if (isMobile()) return;
+        if (pinnedItem) return; // don't clear pinned selection
         clearAll();
       });
+    });
+
+    // Click anywhere outside a timeline item to deselect
+    document.addEventListener('click', function (e) {
+      if (isMobile()) return;
+      if (!pinnedItem) return;
+      var isTimelineItem = e.target.closest('.timeline-item');
+      if (!isTimelineItem) {
+        clearAll();
+        pinnedItem = null;
+      }
     });
 
     skillItems.forEach(function (skill) {
       skill.addEventListener('mouseenter', function () {
         if (isMobile()) return;
+        if (pinnedItem) return; // don't override pinned selection
         clearAll();
         var id = this.getAttribute('data-id');
         this.classList.add('highlighted');
@@ -479,6 +538,7 @@
       });
       skill.addEventListener('mouseleave', function () {
         if (isMobile()) return;
+        if (pinnedItem) return; // don't clear pinned selection
         clearAll();
       });
     });

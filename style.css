@@ -326,9 +326,8 @@ p { color: var(--muted); margin-bottom: 1rem; }
   content: '';
   position: absolute;
   left: -2.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 14px;
+  top: calc(0.7em + 11px);
+  width: 24px;
   height: 2px;
   background: var(--border);
 }
@@ -489,7 +488,7 @@ footer {
 
 /* Timeline hover cue */
 .timeline-item[data-skills] {
-  cursor: default;
+  cursor: pointer;
   transition: background .2s ease;
 }
 
