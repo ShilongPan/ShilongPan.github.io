@@ -9,6 +9,9 @@ layout: default
       <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">
         {{ page.date | date: "%B %d, %Y" }}
       </time>
+      {% if page.author %}
+      <span class="post-author">By {{ page.author }}</span>
+      {% endif %}
     </header>
 
     {% if page.thumbnail %}

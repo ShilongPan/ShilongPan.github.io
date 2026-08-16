@@ -852,6 +852,17 @@ footer {
   font-style: italic;
   padding: .75rem .5rem 0;
 }
+
+.post-author {
+  font-size: .88rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.post-content {
+  margin-top: 2rem;
+}
+
 .blog-content p {
   margin-bottom: 1.25rem;
   color: var(--text);
