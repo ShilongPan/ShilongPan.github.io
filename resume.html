@@ -357,6 +357,9 @@
       // Restore all skill items and groups when clearing
       skillItems.forEach(function (skill) { skill.style.display = ''; });
       document.querySelectorAll('.skill-group').forEach(function (group) { group.style.display = ''; });
+      restoreTimeline();
+      pinnedItem = null;
+      pinnedSkill = null;
     }
 
     // Filter skill items to only show those whose data-id is in the given set
@@ -467,6 +470,7 @@
 
     // ── Desktop: click to pin highlight, hover to preview ──
     var pinnedItem = null;
+    var pinnedSkill = null;
 
     function pinHighlight(item) {
       clearAll();
@@ -479,6 +483,62 @@
       });
       filterSkills(ids);
       pinnedItem = item;
+    }
+
+    // Restore all timeline items and dividers
+    function restoreTimeline() {
+      document.querySelectorAll('.timeline-item[data-skills]').forEach(function (item) {
+        item.style.display = '';
+      });
+      document.querySelectorAll('.timeline-divider').forEach(function (divider) {
+        divider.style.display = '';
+      });
+    }
+
+    // Filter timeline items to show only those containing the given skill
+    function filterTimelineBySkill(skillId) {
+      var activePanel = document.querySelector('.resume-panel:not([hidden])');
+      if (!activePanel) return;
+      var timeline = activePanel.querySelector('.timeline');
+      if (!timeline) return;
+      var items = timeline.querySelectorAll('.timeline-item[data-skills]');
+      items.forEach(function (item) {
+        var skills = item.getAttribute('data-skills').split(',');
+        var matches = skills.indexOf(skillId) !== -1;
+        item.style.display = matches ? '' : 'none';
+        // Hide the divider that follows a hidden item
+        var divider = item.nextElementSibling;
+        if (divider && divider.classList.contains('timeline-divider')) {
+          divider.style.display = 'none';
+        }
+      });
+    }
+
+    // Pin a skill: highlight it and filter timeline entries
+    function pinSkill(skillId) {
+      clearAll();
+      restoreTimeline();
+      filterTimelineBySkill(skillId);
+      // Highlight the pinned skill
+      skillItems.forEach(function (skill) {
+        if (skill.getAttribute('data-id') === skillId) {
+          skill.classList.add('highlighted');
+        }
+      });
+      // Highlight matching timeline items
+      timelineItems.forEach(function (item) {
+        var skills = item.getAttribute('data-skills').split(',');
+        if (skills.indexOf(skillId) !== -1) {
+          item.classList.add('highlighted');
+        }
+      });
+      pinnedSkill = skillId;
+    }
+
+    // Clear skill pin (also calls clearAll which restores timeline)
+    function clearSkillPin() {
+      clearAll();
+      pinnedSkill = null;
     }
 
     timelineItems.forEach(function (item) {
@@ -496,6 +556,7 @@
       item.addEventListener('mouseenter', function () {
         if (isMobile()) return;
         if (pinnedItem) return; // don't override pinned selection
+        if (pinnedSkill) return; // don't override pinned skill
         clearAll();
         var ids = this.getAttribute('data-skills').split(',');
         this.classList.add('highlighted');
@@ -508,16 +569,19 @@
       item.addEventListener('mouseleave', function () {
         if (isMobile()) return;
         if (pinnedItem) return; // don't clear pinned selection
+        if (pinnedSkill) return; // don't clear pinned skill
         clearAll();
       });
     });
 
-    // Click anywhere outside a timeline item to deselect
+    // Click anywhere outside a timeline item or skill to deselect
     document.addEventListener('click', function (e) {
       if (isMobile()) return;
-      if (!pinnedItem) return;
       var isTimelineItem = e.target.closest('.timeline-item');
-      if (!isTimelineItem) {
+      var isSkillItem = e.target.closest('.skill-item');
+      if (pinnedSkill && !isSkillItem) {
+        clearSkillPin();
+      } else if (pinnedItem && !isTimelineItem) {
         clearAll();
         pinnedItem = null;
       }
@@ -527,6 +591,7 @@
       skill.addEventListener('mouseenter', function () {
         if (isMobile()) return;
         if (pinnedItem) return; // don't override pinned selection
+        if (pinnedSkill) return; // don't override pinned skill
         clearAll();
         var id = this.getAttribute('data-id');
         this.classList.add('highlighted');
@@ -539,7 +604,18 @@
       skill.addEventListener('mouseleave', function () {
         if (isMobile()) return;
         if (pinnedItem) return; // don't clear pinned selection
+        if (pinnedSkill) return; // don't clear pinned skill
         clearAll();
+      });
+      skill.addEventListener('click', function (e) {
+        if (isMobile()) return;
+        e.stopPropagation();
+        var id = this.getAttribute('data-id');
+        if (pinnedSkill === id) {
+          clearSkillPin();
+        } else {
+          pinSkill(id);
+        }
       });
     });
   })();
