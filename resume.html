@@ -391,7 +391,13 @@
         t.classList.toggle('active', selected);
         t.setAttribute('aria-selected', selected ? 'true' : 'false');
       });
-      clearAll();
+      // Preserve a pinned skill across tab switches and re-apply it to the
+      // newly active panel. Otherwise clear all highlights as before.
+      if (pinnedSkill) {
+        applyPinnedSkill();
+      } else {
+        clearAll();
+      }
     }
 
     tabs.forEach(function (tab) {
@@ -514,25 +520,26 @@
       });
     }
 
+    // Apply the currently pinned skill to the active panel: filter its
+    // timeline entries and highlight the matching items + the pinned skill.
+    function applyPinnedSkill() {
+      if (!pinnedSkill) return;
+      restoreTimeline();
+      filterTimelineBySkill(pinnedSkill);
+      skillItems.forEach(function (skill) {
+        skill.classList.toggle('highlighted', skill.getAttribute('data-id') === pinnedSkill);
+      });
+      timelineItems.forEach(function (item) {
+        var skills = item.getAttribute('data-skills').split(',');
+        item.classList.toggle('highlighted', skills.indexOf(pinnedSkill) !== -1);
+      });
+    }
+
     // Pin a skill: highlight it and filter timeline entries
     function pinSkill(skillId) {
       clearAll();
-      restoreTimeline();
-      filterTimelineBySkill(skillId);
-      // Highlight the pinned skill
-      skillItems.forEach(function (skill) {
-        if (skill.getAttribute('data-id') === skillId) {
-          skill.classList.add('highlighted');
-        }
-      });
-      // Highlight matching timeline items
-      timelineItems.forEach(function (item) {
-        var skills = item.getAttribute('data-skills').split(',');
-        if (skills.indexOf(skillId) !== -1) {
-          item.classList.add('highlighted');
-        }
-      });
       pinnedSkill = skillId;
+      applyPinnedSkill();
     }
 
     // Clear skill pin (also calls clearAll which restores timeline)
@@ -574,14 +581,16 @@
       });
     });
 
-    // Click anywhere outside a timeline item or skill to deselect
+    // Click anywhere outside a timeline item, skill, or tab to deselect.
+    // Tabs are excluded so switching tabs keeps the current selection.
     document.addEventListener('click', function (e) {
       if (isMobile()) return;
       var isTimelineItem = e.target.closest('.timeline-item');
       var isSkillItem = e.target.closest('.skill-item');
-      if (pinnedSkill && !isSkillItem) {
+      var isTab = e.target.closest('.resume-tab');
+      if (pinnedSkill && !isSkillItem && !isTab) {
         clearSkillPin();
-      } else if (pinnedItem && !isTimelineItem) {
+      } else if (pinnedItem && !isTimelineItem && !isTab) {
         clearAll();
         pinnedItem = null;
       }
