@@ -15,4 +15,4 @@ My next steps are to properly infill my experiences, a few projects, and a few m
 
 This should be adequate for my inaugural blog post. Hopefully my future posts will be more interesting; project updates, life events, essays. If you like my website feel free to mention it, I could always use the ego stroke. If you didn't, keep it to yourself.
 
-- Shilong
+-- Shilong
