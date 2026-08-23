@@ -861,6 +861,40 @@ footer {
   margin-top: 2rem;
 }
 
+.post-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+  margin: 2rem 0;
+}
+
+.gallery-item {
+  margin: 0;
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.gallery-item figcaption {
+  text-align: center;
+  font-size: .78rem;
+  color: var(--muted);
+  font-style: italic;
+  padding-top: .4rem;
+}
+
+@media (max-width: 600px) {
+  .post-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .blog-content p {
   margin-bottom: 1.25rem;
   color: var(--text);
