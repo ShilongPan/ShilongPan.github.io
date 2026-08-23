@@ -28,10 +28,10 @@
 
     <div class="contact-links">
       
-      <a href="https://www.linkedin.com/in/shilong-pan-457955214" target="_blank" rel="noopener noreferrer" class="contact-card">
-        <span class="contact-icon">💼</span>
-        <span class="contact-label">LinkedIn</span>
-        <span class="contact-detail">Shilong Pan</span>
+      <a href="#" id="whatsapp-trigger" class="contact-card">
+        <span class="contact-icon">💬</span>
+        <span class="contact-label">WhatsApp</span>
+        <span class="contact-detail">@shilong.pan</span>
       </a>
 
       <a href="https://www.instagram.com/shilong.pan" target="_blank" rel="noopener noreferrer" class="contact-card">
@@ -63,7 +63,33 @@
   </div>
 </div>
 
+<!-- WhatsApp QR Popup -->
+<div class="profile-popup-overlay" id="whatsapp-popup-overlay">
+  <div class="profile-popup whatsapp-popup">
+    <button class="profile-popup-close" aria-label="Close">&times;</button>
+    <img src="images/whatsapp-qr.png" alt="WhatsApp QR code for @shilong.pan" class="whatsapp-qr" />
+    <div class="profile-popup-name">@shilong.pan</div>
+    <div class="profile-popup-bio">Scan with your phone's camera<br>to add me on WhatsApp!</div>
+  </div>
+</div>
+
 <script src="profile-popup.js"></script>
+<script>
+  (function () {
+    const overlay = document.getElementById('whatsapp-popup-overlay');
+    const trigger = document.getElementById('whatsapp-trigger');
+    if (!overlay || !trigger) return;
+    const closeBtn = overlay.querySelector('.profile-popup-close');
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      overlay.style.display = 'flex';
+    });
+    closeBtn.addEventListener('click', () => { overlay.style.display = 'none'; });
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) overlay.style.display = 'none';
+    });
+  })();
+</script>
 
 </body>
 </html>

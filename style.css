@@ -1044,6 +1044,14 @@ footer {
   text-align: center;
 }
 
+/* ── WhatsApp QR Popup ── */
+.whatsapp-qr {
+  width: clamp(200px, 45vw, 380px);
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: clamp(0.75rem, 2vw, 1.5rem);
+}
+
 /* ══════════════════════════════════════════════════════════
    Projects — index, shared chrome, and the three layouts
    (gallery / text / mixed). Reuses site tokens + .post-card.
