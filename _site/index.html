@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="style.css">
+  
+  
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" id="profile-trigger" href="index.html" title="Shilong Pan"><span class="logo-given">Shilong</span><span class="logo-surname"> Pan</span></a>
+    <ul>
+      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Hello!</h1>
+    <p class="subtitle">
+      This webpage serves as a portfolio, résumé, and record of my experiences. Please feel free to browse this site to learn about me in a social, professional, or creative context.
+    </p>
+  </div>
+</section>
+
+<main>
+  <!-- Latest Section -->
+  <section class="latest-section">
+    <h2>Latest</h2>
+    <a href="/blog.html" class="latest-card">
+      <span class="latest-type">Blog</span>
+      <span class="latest-title">New blog post: Building a Website</span>
+      <span class="latest-arrow">→</span>
+    </a>
+  </section>
+
+  <!-- Explore Section -->
+  <section class="explore-section">
+    <h2>Explore</h2>
+  <div class="card-grid">
+
+    <a href="resume.html" class="card">
+      <h3>📄 Résumé</h3>
+      <p>An interactive approach to learning about my careers.</p>
+      <span class="tag">View Résumé →</span>
+    </a>
+
+    <a href="projects.html" class="card">
+      <h3>🚀 Projects</h3>
+      <p>This page is still under construction!</p>
+      <span class="tag">See Projects →</span>
+    </a>
+
+    <a href="blog.html" class="card">
+      <h3>✍️ Blog</h3>
+      <p>Project updates, essays, and anything else that pops into my mind.</p>
+      <span class="tag">Read Posts →</span>
+    </a>
+
+  </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 Shilong Pan. Built using locally hosted AI tools.</p>
+</footer>
+
+<!-- Profile Popup -->
+<div class="profile-popup-overlay" id="profile-popup-overlay">
+  <div class="profile-popup">
+    <button class="profile-popup-close" aria-label="Close">&times;</button>
+    <img id="profile-popup-portrait" src="" alt="Shilong Pan" class="profile-popup-portrait" />
+    <div class="profile-popup-name">Shilong Pan</div>
+    <div class="profile-popup-bio">Hi, in case we haven't met,<br>here's what I look like!</div>
+  </div>
+</div>
+
+<script src="profile-popup.js"></script>
+
+</body>
+</html>

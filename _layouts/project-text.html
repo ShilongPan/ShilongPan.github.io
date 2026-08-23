@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<!-- Text layout: long-form, narrow reading column with drop cap on the first
+     paragraph. Use pull quotes and occasional inline figures for pacing. -->
+
+<main class="proj-main proj-page-text">
+  <article>
+    <header class="proj-header">
+      <p class="proj-eyebrow">Project notes · {{ page.date | date: "%B %Y" }}</p>
+      <h1>{{ page.title }}</h1>
+      {% if page.status %}
+      <span class="project-status status-{{ page.status | downcase | slugify }}">{{ page.status }}</span>
+      {% endif %}
+    </header>
+
+    <div class="proj-body prose">
+      {{ content }}
+    </div>
+
+    {% if page.signoff %}
+    <p class="prose-signoff">{{ page.signoff }}</p>
+    {% endif %}
+
+    <nav class="proj-back">
+      <a href="{{ '/projects.html' | relative_url }}">← All projects</a>
+    </nav>
+  </article>
+</main>

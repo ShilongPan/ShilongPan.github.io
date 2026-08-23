@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<!-- Mixed layout: collage grids, text/image splits, and full-bleed bands.
+     Content is structured in "chapters" — see _projects/ for examples. -->
+
+<main class="proj-main proj-page-mixed">
+  <article>
+    <header class="proj-header proj-header-mixed">
+      <p class="proj-eyebrow">Project · {{ page.date | date: "%B %Y" }}</p>
+      <h1>{{ page.title }}</h1>
+      {% if page.status %}
+      <span class="project-status status-{{ page.status | downcase | slugify }}">{{ page.status }}</span>
+      {% endif %}
+      {% if page.tagline %}
+      <p class="proj-tagline">{{ page.tagline }}</p>
+      {% endif %}
+    </header>
+
+    <div class="proj-body">
+      {{ content }}
+    </div>
+
+    <nav class="proj-back">
+      <a href="{{ '/projects.html' | relative_url }}">← All projects</a>
+    </nav>
+  </article>
+</main>

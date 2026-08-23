@@ -1,0 +1,36 @@
+---
+layout: default
+title: Projects
+---
+
+<main>
+  <h1>Projects</h1>
+  <p class="page-intro">Long-running projects I keep coming back to — updated as they evolve.</p>
+
+  <div class="post-list">
+    {%- comment -%} Find the projects collection by label (site.collections is a hash on some Jekyll versions, a list on others) and sort newest-first outside the for tag, since liquid 4.0.x cannot parse quoted filter args inside a for-collection expression. {%- endcomment -%}
+    {% assign projects = empty %}
+    {% for collection in site.collections %}
+      {% if collection.label == 'projects' %}{% assign projects = collection.docs %}{% endif %}
+    {% endfor %}
+    {% assign ordered_projects = projects | sort: "date" | reverse %}
+    {% for project in ordered_projects %}
+    <a href="{{ project.url | relative_url }}" class="post-card">
+      {% if project.thumbnail %}
+      <div class="post-card-thumb">
+        <img src="{{ project.thumbnail | relative_url }}" alt="{{ project.title }}">
+      </div>
+      {% endif %}
+      <div class="post-card-body">
+        <span class="post-card-meta">
+          <span class="post-card-date">{{ project.date | date: "%B %d, %Y" }}</span>
+          {% if project.status %}<span class="project-status status-{{ project.status | downcase | slugify }}">{{ project.status }}</span>{% endif %}
+        </span>
+        <span class="post-card-title">{{ project.title }}</span>
+        <span class="post-card-excerpt">{{ project.excerpt | default: project.content | strip_html | truncatewords: 30 }}</span>
+      </div>
+      <span class="post-card-arrow">→</span>
+    </a>
+    {% endfor %}
+  </div>
+</main>

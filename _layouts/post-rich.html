@@ -1,0 +1,82 @@
+---
+layout: default
+---
+<!--
+  Rich post layout: hero image, text, second image, text, 6-image gallery, more text.
+
+  Front matter:
+    hero_image: /images/foo.jpg      # initial image (optional)
+    hero_caption: "..."              # caption under the initial image (optional)
+    image_2: /images/bar.jpg         # second image (optional)
+    image_2_caption: "..."           # caption under the second image (optional)
+    gallery:                         # 6-image gallery (optional)
+      - src: /images/a.jpg
+        caption: "Optional caption"
+
+  Body: write your text and separate the three text sections with a line containing
+  exactly:  <!-- next -->
+  Section 1 appears before image_2, section 2 after it, and section 3 after the gallery.
+-->
+
+<main>
+  <article>
+    <header>
+      <h1>{{ page.title }}</h1>
+      <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">
+        {{ page.date | date: "%B %d, %Y" }}
+      </time>
+      {% if page.author %}
+      <span class="post-author">By {{ page.author }}</span>
+      {% endif %}
+    </header>
+
+    {% if page.hero_image %}
+    <div class="blog-image">
+      <img src="{{ page.hero_image | relative_url }}" alt="{{ page.title }}">
+      {% if page.hero_caption %}
+      <span class="image-caption">{{ page.hero_caption }}</span>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% assign sections = content | split: '<!-- next -->' %}
+
+    <div class="post-content">
+      {{ sections[0] }}
+    </div>
+
+    {% if page.image_2 %}
+    <div class="blog-image">
+      <img src="{{ page.image_2 | relative_url }}" alt="{{ page.title }}">
+      {% if page.image_2_caption %}
+      <span class="image-caption">{{ page.image_2_caption }}</span>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="post-content">
+      {{ sections[1] }}
+    </div>
+
+    {% if page.gallery and page.gallery.size > 0 %}
+    <div class="post-gallery">
+      {% for item in page.gallery %}
+      <figure class="gallery-item">
+        <img src="{{ item.src | relative_url }}" alt="{{ item.caption | default: page.title }}">
+        {% if item.caption %}
+        <figcaption>{{ item.caption }}</figcaption>
+        {% endif %}
+      </figure>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="post-content">
+      {{ sections[2] }}
+    </div>
+
+    <nav class="post-nav">
+      <a href="{{ '/blog.html' | relative_url }}">← Back to all posts</a>
+    </nav>
+  </article>
+</main>
