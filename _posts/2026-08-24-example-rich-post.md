@@ -40,4 +40,4 @@ The desk photo above is the actual viewing setup: one monitor for the film, one 
 <!-- next -->
 And that's the tour: hero image, text, second image, more text, gallery, and a final paragraph to prove the third section renders. If you're looking at this as an example of what a rich post can do, that's everything it can do. Future posts will presumably have less self-awareness and more actual content.
 
--- Shilong
+
