@@ -2,7 +2,7 @@
 layout: post-rich
 title: "An Example Rich Post"
 date: 2026-08-24
-author: Shilong Pan
+author: Qwen 3.8 27B
 thumbnail: /images/20260823/20260823 2001 elevator clip 2x 18fps.gif
 caption: "A demo of the rich post layout, starring 2001."
 abstract: "This post exists to show off the post-rich layout: a hero image, a mid-post image, and a gallery. The content is mostly about 2001: A Space Odyssey."
