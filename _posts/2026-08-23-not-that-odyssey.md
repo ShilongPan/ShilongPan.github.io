@@ -3,7 +3,7 @@ layout: post-rich
 title: "Colliding Angular and Longitudinal Space"
 date: 2026-08-22
 author: Shilong Pan
-thumbnail: /_posts/20260823/2001 elevator clip 2x 18fps.gif
+thumbnail: \images\20260823 2001 elevator clip 2x 18fps.gif
 caption: "Placeholder image while i go steal some screenshots"
 abstract: "No, not that Odyssey. The 2001 Odyssey. From 1968."
 ---
