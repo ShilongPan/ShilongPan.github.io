@@ -2,19 +2,20 @@
 layout: default
 ---
 <!--
-  Rich post layout: hero image, text, second image, text, 6-image gallery, more text.
+  Rich post layout — data-driven ordered blocks.
 
-  Front matter:
-    hero_image: /images/foo.jpg      # initial image (optional)
-    hero_caption: "..."              # caption under the initial image (optional)
-    image_2: /images/bar.jpg         # second image (optional)
-    image_2_caption: "..."           # caption under the second image (optional)
-    gallery:                         # 6-image gallery (optional)
-      - src: /images/a.jpg
-        caption: "Optional caption"
+  PREFERRED: define an ordered `blocks:` list in front matter. Each block is one of:
+    - { type: text }                                # renders the next body chunk (split on <!-- next -->)
+    - { type: image, src: /img.jpg, caption: "..." }# single inline image
+    - { type: gallery, items: [ {src, caption}, ... ] }  # N-image gallery
 
-  
-  Section 1 appears before image_2, section 2 after it, and section 3 after the gallery.
+  `text` blocks consume the body in order: section 1 = text before the first <!-- next -->,
+  section 2 = between the first and second marker, and so on. Use as many text / image /
+  gallery blocks, in any order, as you like (e.g. two galleries back-to-back).
+
+  LEGACY (still supported when `blocks:` is absent): hero_image / hero_caption,
+  image_2 / image_2_caption, and gallery: [ {src, caption} ], with the body split into
+  three sections on <!-- next -->.
 -->
 
 <main>
@@ -29,6 +30,41 @@ layout: default
       {% endif %}
     </header>
 
+    {% assign sections = content | split: '<!-- next -->' %}
+    {% assign text_index = 0 %}
+
+    {% if page.blocks and page.blocks.size > 0 %}
+    <!-- ── Data-driven mode: render blocks in the order given ─────────────── -->
+    {% for block in page.blocks %}
+      {% case block.type %}
+      {% when 'text' %}
+        <div class="post-content">
+          {{ sections[text_index] }}
+        </div>
+        {% assign text_index = text_index | plus: 1 %}
+      {% when 'image' %}
+        <div class="blog-image">
+          <img src="{{ block.src | relative_url }}" alt="{{ block.caption | default: page.title }}">
+          {% if block.caption %}
+          <span class="image-caption">{{ block.caption }}</span>
+          {% endif %}
+        </div>
+      {% when 'gallery' %}
+        <div class="post-gallery">
+          {% for item in block.items %}
+          <figure class="gallery-item">
+            <img src="{{ item.src | relative_url }}" alt="{{ item.caption | default: page.title }}">
+            {% if item.caption %}
+            <figcaption>{{ item.caption }}</figcaption>
+            {% endif %}
+          </figure>
+          {% endfor %}
+        </div>
+      {% endcase %}
+    {% endfor %}
+
+    {% else %}
+    <!-- ── Legacy mode: hero image, text, second image, text, gallery, text ─ -->
     {% if page.hero_image %}
     <div class="blog-image">
       <img src="{{ page.hero_image | relative_url }}" alt="{{ page.title }}">
@@ -37,8 +73,6 @@ layout: default
       {% endif %}
     </div>
     {% endif %}
-
-    {% assign sections = content | split: '<!-- next -->' %}
 
     <div class="post-content">
       {{ sections[0] }}
@@ -73,6 +107,7 @@ layout: default
     <div class="post-content">
       {{ sections[2] }}
     </div>
+    {% endif %}
 
     <nav class="post-nav">
       <a href="{{ '/blog.html' | relative_url }}">← Back to all posts</a>
