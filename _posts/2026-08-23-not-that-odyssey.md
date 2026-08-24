@@ -35,7 +35,11 @@ I watched 2001: A Space Odyssey last night with my mom. I got the 4K HDR version
 
 Spoilers ahead, this is fair warning aplenty. You've had almost 60 years to watch this movie.
 
-Throughout the film, I noticed many comparisons between straight lines and curved lines, either between shots or within. Structures, motion, set pieces, optical distortion, and camera paths often had distinctly angular or linear components. Take for example, my favourite shot in the movie: The elevator door as
+Throughout the film, I noticed many comparisons between straight lines and curved lines, either between shots or within. Structures, motion, set pieces, optical distortion, and camera paths often had distinctly angular or linear components. Take for example, my favourite shot in the movie: The elevator door on the first space station we visit:
+
+The shot appears to be some pattern moving laterally across the frame, only revealed to be the camera rotating around the circular elevator when we finally pan to the opening door and we can finally discern the 3D structure. At this moment, I don't think it represents anything in particular, it's just an impressive visual trick meant to wow the audience.
+
+
 
 elevator door description
 
