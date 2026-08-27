@@ -48,19 +48,27 @@ Throughout the film, I noticed many comparisons between straight lines and curve
 The shot appears to be some pattern moving laterally across the frame, only revealed to be the camera rotating around the circular elevator when we finally pan to the opening door and we can finally discern the 3D structure. It's an impressive visual trick meant to wow the audience, but it also serves to add a note of confusion to the experience.
 
 The play on angular and linear lines continues in the next few examples, such as the attendant in the spacecraft. She moves along the straight lines of the floor to an angular dining service to collect some trays, all things that we consider normal and expected. 
+
 <!-- next -->
+
 It is only when she moves to the circular hallway intersection that our perception is tested, as she begins walking up the walls to enter a different hallway.
 
 On the mission to Jupiter, the spacecraft features circular quarters. The round elements appear stretched out and exaggerated in the frame of the camera.
+
 <!-- next -->
+
 Earlier, as the expedition went to investigate the monolith, there was a lovely shot framing the excavation site in square, neat lines, while the circular image of the Earth, home, hangs in the sky.
+
 <!-- next -->
+
 For the most part, the use of linear and angular space and lines is mostly for visual attractiveness and composition. There isn't really a specific meaning tied to either or. In the earlier scenes the circles betray expectation, while in others, they associate more with familiarity in contrast to the unnaturally sharp and perfect regularity of the monolith.
 
 In the scenes with HAL9000, HAL's circular interface isn't in particular contrast to anything; the pods, the spaceship, etc.
 
 However, in the final scenes, as Dave enters infinity, the use of fisheye and rectilinear lenses creates varying degrees of uneasiness, wariness, and clinicality.
+
 <!-- next -->
+
 Dave's perception, sometimes rounded and distorted, as though he were hyperaware or afraid, contrasts against adjacent shots of still, regular space. These seem to fade away as he becomes accustomed to the strange room.
 
 In this case, the juxtaposition of round and straight perception produces an emotional effect on the viewer, which I found interesting.
