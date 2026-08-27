@@ -13,11 +13,9 @@ blocks:
   - type: text
   - type: image
     src: /images/20260823/elevator.gif
-    caption: 
   - type: text
   - type: image
     src: /images/20260823/hamsterwheel.jpg
-    caption:
   - type: text
   - type: image
     src: /images/20260823/station.jpg
@@ -28,13 +26,9 @@ blocks:
   - type: gallery
     items:
       - src: /images/20260823/flat1.jpg
-        caption:
       - src: /images/20260823/round1.jpg
-        caption:
       - src: /images/20260823/flat2.jpg
-        caption:
       - src: /images/20260823/round2.jpg
-        caption:
   - type: text
 ---
 I watched 2001: A Space Odyssey last night with my mom. I got the 4K HDR version, and I've heard this is one of the movies that looks really spectacular in this format. It does. However, that doesn't get around the fact that the movie is old. 58 years old. In that time, special effects, CGI, sound design, film convetions, and so many elements of story telling and cinema have changed, matured, and evolved. However, the movie still holds up shockingly well. The sci-fi elements were mostly reasonably believable, there were a few funny moments with a bit of charm, and a clear amount of effort was put into it. According to my mom, who delivered a shockingly in-depth analysis of the movie to me, the movie was about human evolution and transcendance originating from the mystery of the universe, and not through machines and computers. Sure, whatever. Kind of a dead horse at this point, Edgerunners would be the modern take. What I appreciated most from the film was the beautiful cinematography, which clearly was, and still is, inspirational to many films and other artworks thereafter. There are plenty of fans who could wax eloquent about Kubrick's shot design and well-studied academics whose analysis and review of the film are going to be much better composed. I've decided to write about what caught my eye the most strongly, owing to my experiences as a photographer. 
