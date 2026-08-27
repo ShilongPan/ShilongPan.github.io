@@ -6,13 +6,14 @@ author: Shilong Pan
 thumbnail: /images/20260823/tn.jpg
 caption: 
 abstract: "No, not that Odyssey. The 2001 Odyssey. From 1968."
-hero_image: /images/20260823/chairs.jpg
-hero_caption: "Punchy, organically-shaped Djinn chairs accent the already curved hallways of the space station."
 blocks:
+  - type: image
+    src: /images/20260823/chairs.jpg
+    caption: 
   - type: text
   - type: image
     src: /images/20260823/elevator.gif
-    caption:
+    caption: "Punchy, organically-shaped Djinn chairs accent the already curved hallways of the space station."
   - type: text
   - type: image
     src: /images/20260823/hamsterwheel.jpg
@@ -64,9 +65,6 @@ cccc
 <!-- next -->
 dddd
 
-<!-- next -->
-eeee
-<!-- next -->
 
 
 -- Shilong
