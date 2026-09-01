@@ -134,6 +134,27 @@ h2::after {
 
 p { color: var(--muted); margin-bottom: 1rem; }
 
+/* ── Intro Section ── */
+.intro-section {
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 0;
+}
+
+.intro-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.intro-text {
+  font-size: 1.15rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.9;
+  font-weight: 300;
+}
+
 /* ── Hero Section ── */
 /* Replace the background color with a background-image when ready: */
 /*   background-image: url('images/hero-bg.jpg'); */
@@ -182,66 +203,95 @@ p { color: var(--muted); margin-bottom: 1rem; }
 
 /* ── Explore Section ── */
 .explore-section {
-  max-width: var(--max-width);
   width: 100%;
   margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* ── Card Grid ── */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.25rem;
-  margin-top: 1.5rem;
-}
-
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-top: 3px solid var(--accent);
-  padding: 1.75rem;
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  position: relative;
   display: flex;
   flex-direction: column;
+  gap: 0;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  border-color: var(--border-hl);
+/* ── Explore Banners ── */
+.explore-banner {
+  display: block;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  min-height: 320px;
 }
 
-.card h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: .5rem;
+.explore-banner-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform .6s ease;
+  z-index: 0;
+}
+
+.explore-banner:hover .explore-banner-bg {
+  transform: scale(1.05);
+}
+
+.explore-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(29, 53, 87, 0.75), rgba(26, 26, 26, 0.65));
+  z-index: 1;
+  transition: opacity .3s ease;
+}
+
+.explore-banner:hover::before {
+  background: linear-gradient(135deg, rgba(29, 53, 87, 0.6), rgba(26, 26, 26, 0.55));
+}
+
+.explore-banner-content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  color: #FAFAF8;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.explore-banner-content h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
   letter-spacing: .02em;
+  color: #FAFAF8;
 }
 
-.card p {
-  font-size: .92rem;
+.explore-banner-content p {
+  font-size: 1.05rem;
+  color: #D0D0D0;
   margin-bottom: 0;
   font-weight: 300;
   line-height: 1.7;
 }
 
-.card .tag {
+.explore-banner-content .tag {
   display: inline-block;
-  margin-top: auto;
-  font-size: .75rem;
+  font-size: .8rem;
   font-weight: 600;
   letter-spacing: .06em;
-  color: var(--accent);
-  padding: .35rem .8rem;
-  border: 1px solid var(--accent);
-  transition: background .2s, color .2s;
+  color: var(--accent-lt);
+  padding: .4rem 1rem;
+  border: 1px solid var(--accent-lt);
+  transition: background .2s, color .2s, border-color .2s;
+  align-self: flex-start;
+  margin-top: .5rem;
 }
 
-.card:hover .tag {
-  background: var(--accent);
-  color: #fff;
+.explore-banner:hover .explore-banner-content .tag {
+  background: var(--accent-lt);
+  color: #1A1A1A;
+  border-color: var(--accent-lt);
 }
 
 /* ── Timeline (experiences / resume) ── */
