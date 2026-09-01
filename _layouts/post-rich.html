@@ -50,7 +50,11 @@ layout: default
           {% endif %}
         </div>
       {% when 'gallery' %}
-        <div class="post-gallery">
+        {% assign n = block.items.size %}
+        {% if n <= 1 %}{% assign cols = '1col' %}
+        {% elsif n == 2 or n == 4 %}{% assign cols = '2col' %}
+        {% else %}{% assign cols = '3col' %}{% endif %}
+        <div class="post-gallery post-gallery--{{ cols }}">
           {% for item in block.items %}
           <figure class="gallery-item">
             <img src="{{ item.src | relative_url }}" alt="{{ item.caption | default: page.title }}">
@@ -92,7 +96,11 @@ layout: default
     </div>
 
     {% if page.gallery and page.gallery.size > 0 %}
-    <div class="post-gallery">
+    {% assign n = page.gallery.size %}
+    {% if n <= 1 %}{% assign cols = '1col' %}
+    {% elsif n == 2 or n == 4 %}{% assign cols = '2col' %}
+    {% else %}{% assign cols = '3col' %}{% endif %}
+    <div class="post-gallery post-gallery--{{ cols }}">
       {% for item in page.gallery %}
       <figure class="gallery-item">
         <img src="{{ item.src | relative_url }}" alt="{{ item.caption | default: page.title }}">

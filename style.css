@@ -863,19 +863,33 @@ footer {
 
 .post-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: .75rem;
   margin: 2rem 0;
+}
+
+/* Column count is chosen by the post-rich layout from the image count:
+   1 → one column, 2 or 4 → two columns (so 4 images form a 2×2 grid),
+   anything else → three columns. */
+.post-gallery--1col {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.post-gallery--2col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.post-gallery--3col {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .gallery-item {
   margin: 0;
 }
 
+/* Images keep their natural aspect ratio — no square cropping. */
 .gallery-item img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  height: auto;
   display: block;
   border: 1px solid var(--border);
   background: var(--surface);
@@ -890,8 +904,9 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .post-gallery {
-    grid-template-columns: repeat(2, 1fr);
+  /* Narrow screens: three-column galleries drop to two columns. */
+  .post-gallery--3col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
