@@ -481,6 +481,8 @@
         t.classList.toggle('active', selected);
         t.setAttribute('aria-selected', selected ? 'true' : 'false');
       });
+      // Scroll the active tab into view within the tab bar
+      tab.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: 'auto' });
       // Preserve a pinned skill across tab switches and re-apply it to the
       // newly active panel. Otherwise clear all highlights as before.
       if (pinnedSkill) {

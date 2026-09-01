@@ -496,19 +496,6 @@ footer {
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  /* Make tabs horizontally scrollable on narrow screens */
-  .resume-tabs {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    gap: 0;
-  }
-
-  .resume-tabs::-webkit-scrollbar {
-    display: none;
-  }
-
   .resume-tab {
     padding: 0.6rem 1rem;
     font-size: 0.85rem;
@@ -974,6 +961,14 @@ footer {
   gap: 0;
   border-bottom: 2px solid var(--border);
   margin-bottom: 1.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.resume-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .resume-tab {
