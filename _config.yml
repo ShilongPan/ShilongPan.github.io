@@ -10,12 +10,6 @@ tagline: Developer, researcher, builder.
 markdown: kramdown
 highlighter: rouge
 
-# ── Collections ──
-collections:
-  projects:
-    output: true
-    permalink: /project/:name/
-
 # ── URL / Base ──
 baseurl: ""
 url: ""
