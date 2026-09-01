@@ -5,17 +5,17 @@ layout: default
   Rich post layout — data-driven ordered blocks.
 
   PREFERRED: define an ordered `blocks:` list in front matter. Each block is one of:
-    - { type: text }                                # renders the next body chunk (split on <!-- next -->)
+    - { type: text }                                # renders the next body chunk (split on <!- next ->)
     - { type: image, src: /img.jpg, caption: "..." }# single inline image
     - { type: gallery, items: [ {src, caption}, ... ] }  # N-image gallery
 
-  `text` blocks consume the body in order: section 1 = text before the first <!-- next -->,
+  `text` blocks consume the body in order: section 1 = text before the first <!- next ->,
   section 2 = between the first and second marker, and so on. Use as many text / image /
   gallery blocks, in any order, as you like (e.g. two galleries back-to-back).
 
   LEGACY (still supported when `blocks:` is absent): hero_image / hero_caption,
   image_2 / image_2_caption, and gallery: [ {src, caption} ], with the body split into
-  three sections on <!-- next -->.
+  three sections on <!- next ->.
 -->
 
 <main>
