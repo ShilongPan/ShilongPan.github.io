@@ -99,9 +99,10 @@ nav ul a.active::after {
 /* ── Main Content ── */
 main {
   flex: 1;
+  max-width: var(--max-width);
   width: 100%;
   margin: 0 auto;
-  padding: 3rem 0;
+  padding: 3rem 1.5rem;
 }
 
 h1 {
