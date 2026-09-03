@@ -184,7 +184,25 @@ p { color: var(--muted); margin-bottom: 1rem; }
 .hero .hero-inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 4rem 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Frosted glass card behind hero text */
+.hero .hero-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  z-index: -1;
+  max-width: 680px;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 
