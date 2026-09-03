@@ -195,6 +195,7 @@ p { color: var(--muted); margin-bottom: 1rem; }
   letter-spacing: .02em;
   line-height: 1.15;
   color: #FAFAF8;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .hero .subtitle {
