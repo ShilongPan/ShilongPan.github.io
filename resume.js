@@ -342,8 +342,10 @@
     p.appendChild(wrapper);
   });
 
-  // Expand an item's description
+  // Expand an item's description (desktop only — on mobile entries stay
+  // fully expanded via the CSS media query, so there is nothing to toggle)
   function expandItem(item) {
+    if (isMobile()) return;
     if (state.expandedItem === item) return;
     collapseAllDescs();
     var desc = item.querySelector('.collapsible-desc');
@@ -353,8 +355,9 @@
     }
   }
 
-  // Collapse all descriptions
+  // Collapse all descriptions (desktop only — mobile entries never collapse)
   function collapseAllDescs() {
+    if (isMobile()) return;
     if (state.expandedItem) {
       var desc = state.expandedItem.querySelector('.collapsible-desc');
       if (desc) desc.classList.remove('expanded');

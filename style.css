@@ -642,6 +642,18 @@ footer {
   .timeline-item[data-skills]:active {
     background: rgba(29, 53, 87, .08);
   }
+
+  /* Mobile: keep every entry description fully expanded — no line clamping,
+     no fade, no tap-to-expand (the slide-out panel would cover the text) */
+  .collapsible-desc,
+  .collapsible-desc.expanded {
+    max-height: none;
+    cursor: default;
+  }
+
+  .collapsible-desc::after {
+    display: none;
+  }
 }
 
 /* Hide the close button on desktop */
