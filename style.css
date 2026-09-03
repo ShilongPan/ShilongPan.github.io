@@ -536,13 +536,17 @@ footer {
   border-radius: 4px;
 }
 
-/* Keep the description fade in sync with the hover/highlight tint */
+/* Keep the description fade in sync with the hover/highlight tint.
+   The darkest stop is the opaque composite of the tint over --bg, so it
+   exactly matches the item's background instead of double-blending on top. */
 .timeline-item[data-skills]:hover .collapsible-desc::after {
-  background: linear-gradient(to bottom, transparent, rgba(29, 53, 87, .04));
+  background: linear-gradient(to bottom, transparent, #F1F2F2); /* fallback: accent 4% over --bg */
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--accent) 4%, var(--bg)));
 }
 
 .timeline-item.highlighted .collapsible-desc::after {
-  background: linear-gradient(to bottom, transparent, rgba(29, 53, 87, .08));
+  background: linear-gradient(to bottom, transparent, #E8EAEB); /* fallback: accent 8% over --bg */
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--accent) 8%, var(--bg)));
 }
 
 .timeline-item.highlighted {
