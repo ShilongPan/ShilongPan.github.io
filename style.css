@@ -169,10 +169,13 @@ p { color: var(--muted); margin-bottom: 1rem; }
 /*   background-repeat: no-repeat; */
 .hero {
   text-align: center;
-  padding: 3rem 1.5rem 1rem;
+  padding: 0 1.5rem;
   position: relative;
   background: #1A1A1A;
   color: #FAFAF8;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
 }
 
 .hero .hero-inner {
@@ -203,11 +206,13 @@ p { color: var(--muted); margin-bottom: 1rem; }
 /* Decorative horizontal rule under hero */
 .hero::after {
   content: '';
-  display: block;
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
   width: 60px;
   height: 4px;
   background: var(--accent-lt);
-  margin: 2.5rem auto 0;
 }
 
 /* ── Explore Section ── */
@@ -644,7 +649,7 @@ footer {
   nav ul { gap: 1rem; }
   nav ul a { font-size: .75rem; }
   .hero h1 { font-size: 2rem; }
-  .hero { padding: 3rem 0 2rem; }
+  .hero { padding: 0 1.25rem; }
   h2::after { width: 36px; }
 }
 
