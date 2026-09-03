@@ -531,6 +531,15 @@ footer {
   border-radius: 4px;
 }
 
+/* Keep the description fade in sync with the hover/highlight tint */
+.timeline-item[data-skills]:hover .collapsible-desc::after {
+  background: linear-gradient(to bottom, transparent, rgba(29, 53, 87, .04));
+}
+
+.timeline-item.highlighted .collapsible-desc::after {
+  background: linear-gradient(to bottom, transparent, rgba(29, 53, 87, .08));
+}
+
 .timeline-item.highlighted {
   background: rgba(29, 53, 87, .08);
   border-radius: 4px;
