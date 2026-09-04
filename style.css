@@ -329,35 +329,29 @@ p { color: var(--muted); margin-bottom: 1rem; }
 }
 
 /* ── Collapsible description text ── */
+/* Collapsed entries show only year / title / org — no description text at
+   all. Clicking an entry expands its full description (desktop). */
 .collapsible-desc {
   display: block;
-  max-height: 3em;
+  max-height: 0;
   overflow: hidden;
   cursor: pointer;
   line-height: 1.6;
   transition: max-height 0.35s ease;
-  position: relative;
-}
-
-.collapsible-desc::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1.4em;
-  background: linear-gradient(to bottom, transparent, var(--bg));
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.collapsible-desc.expanded::after {
-  opacity: 0;
 }
 
 .collapsible-desc.expanded {
   max-height: 2000px;
   cursor: default;
+}
+
+/* Desktop: a collapsed description paragraph takes no vertical space,
+   so collapsed entries end right after the org line. (Browsers without
+   :has() simply keep the small extra gap — acceptable fallback.) */
+@media (min-width: 901px) {
+  .timeline-item p:has(> .collapsible-desc:not(.expanded)) {
+    margin-bottom: 0;
+  }
 }
 
 /* ── Timeline (experiences / resume) ── */
@@ -556,19 +550,6 @@ footer {
   border-radius: 4px;
 }
 
-/* Keep the description fade in sync with the hover/highlight tint.
-   The darkest stop is the opaque composite of the tint over --bg, so it
-   exactly matches the item's background instead of double-blending on top. */
-.timeline-item[data-skills]:hover .collapsible-desc::after {
-  background: linear-gradient(to bottom, transparent, #F1F2F2); /* fallback: accent 4% over --bg */
-  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--accent) 4%, var(--bg)));
-}
-
-.timeline-item.highlighted .collapsible-desc::after {
-  background: linear-gradient(to bottom, transparent, #E8EAEB); /* fallback: accent 8% over --bg */
-  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--accent) 8%, var(--bg)));
-}
-
 .timeline-item.highlighted {
   background: rgba(29, 53, 87, .08);
   border-radius: 4px;
@@ -663,16 +644,12 @@ footer {
     background: rgba(29, 53, 87, .08);
   }
 
-  /* Mobile: keep every entry description fully expanded — no line clamping,
-     no fade, no tap-to-expand (the slide-out panel would cover the text) */
+  /* Mobile: keep every entry description fully expanded — no clamping,
+     no tap-to-expand (the slide-out panel would cover the text) */
   .collapsible-desc,
   .collapsible-desc.expanded {
     max-height: none;
     cursor: default;
-  }
-
-  .collapsible-desc::after {
-    display: none;
   }
 }
 

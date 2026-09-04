@@ -308,33 +308,14 @@
   });
 
   // ── Collapsible descriptions (merged from second IIFE; P1-2 state sharing) ─
-  var LINE_HEIGHT = 1.6;
-  var MAX_HEIGHT_LINES = 3;
-
-  function countLines(text, width) {
-    var temp = document.createElement('span');
-    temp.style.cssText = 'position:absolute;visibility:hidden;display:block;' +
-                         'width:' + width + 'px;line-height:' + LINE_HEIGHT + ';';
-    temp.textContent = text;
-    document.body.appendChild(temp);
-    // P0-2: divide by the computed PIXEL line-height, not the unitless multiplier
-    var pixelLineHeight = parseFloat(getComputedStyle(temp).lineHeight) || 16 * LINE_HEIGHT;
-    var lines = Math.round(temp.scrollHeight / pixelLineHeight);
-    document.body.removeChild(temp);
-    return lines;
-  }
-
-  // Wrap eligible paragraphs
+  // Wrap EVERY description paragraph so collapsed entries show only
+  // year / title / org — no text at all until the entry is expanded.
   document.querySelectorAll('.timeline-item p').forEach(function (p) {
     if (p.classList.contains('org') || p.querySelector('a')) return;
     if (!p.textContent.trim()) return;
 
     var text = p.textContent.trim();
-    var lines = countLines(text, p.offsetWidth);
-    if (lines <= MAX_HEIGHT_LINES) return;
-
     p.style.cursor = 'pointer';
-    p.style.paddingBottom = '0.1rem';
     p.innerHTML = '';
     var wrapper = document.createElement('span');
     wrapper.className = 'collapsible-desc';
@@ -348,9 +329,9 @@
     if (isMobile()) return;
     if (state.expandedItem === item) return;
     collapseAllDescs();
-    var desc = item.querySelector('.collapsible-desc');
-    if (desc) {
-      desc.classList.add('expanded');
+    var descs = item.querySelectorAll('.collapsible-desc');
+    if (descs.length) {
+      descs.forEach(function (d) { d.classList.add('expanded'); });
       state.expandedItem = item;
     }
   }
@@ -359,8 +340,9 @@
   function collapseAllDescs() {
     if (isMobile()) return;
     if (state.expandedItem) {
-      var desc = state.expandedItem.querySelector('.collapsible-desc');
-      if (desc) desc.classList.remove('expanded');
+      state.expandedItem.querySelectorAll('.collapsible-desc').forEach(function (d) {
+        d.classList.remove('expanded');
+      });
       state.expandedItem = null;
     }
   }
