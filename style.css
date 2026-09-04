@@ -1050,6 +1050,79 @@ footer {
   color: var(--muted);
 }
 
+.contact-form-wrap {
+  margin-top: 3rem;
+}
+
+.contact-form-wrap h2 {
+  margin-bottom: .5rem;
+}
+
+.contact-form-wrap > p {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  padding: 2rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.contact-form label {
+  font-weight: 600;
+  font-size: .9rem;
+  color: var(--text);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: .6rem .8rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(29, 53, 87, .12);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.contact-form button[type="submit"] {
+  align-self: flex-start;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
+  padding: .65rem 1.75rem;
+  cursor: pointer;
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+
+.contact-form button[type="submit"]:hover {
+  background: var(--accent-lt);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(29, 53, 87, .2);
+}
+
 /* ── Resume tabs ── */
 .resume-tabs {
   display: flex;
