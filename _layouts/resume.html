@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Résumé</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" id="profile-trigger" href="index.html" title="Shilong Pan"><span class="logo-given">Shilong</span><span class="logo-surname"> Pan</span></a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a class="active" href="resume.html">Résumé</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="resume-page">
+  <h1>Résumé</h1>
+
+  <div class="resume-profile">
+    <h2>Profile</h2>
+
+    <p>Adaptable, communicative, and dependable data scientist who pulls inspiration and insight from a diverse history of experiences. Motivated by tangible impact, learning opportunities, and engaging teams. Excited to work in dynamic environments, with quality peers, on challenging projects. Actively looking to become involved with research in healthcare or medicine, as well as opportunities to understand and support disadvantaged communities.</p>
+  </div>
+
+  <div class="resume-columns">
+
+    <!-- Primary (left) column -->
+    <div class="resume-primary">
+
+      <div class="resume-tabs" role="tablist" aria-label="Résumé sections">
+        <button class="resume-tab active" id="tab-employment" role="tab"
+                aria-selected="true"  aria-controls="panel-employment">Employment</button>
+        <button class="resume-tab" id="tab-education" role="tab"
+                aria-selected="false" aria-controls="panel-education">Academia</button>
+        <button class="resume-tab" id="tab-experiences" role="tab"
+                aria-selected="false" aria-controls="panel-experiences">Involvements</button>
+        <button class="resume-tab" id="tab-awards" role="tab"
+                aria-selected="false" aria-controls="panel-awards">Awards</button>
+        <button class="resume-tab" id="tab-hobbies" role="tab"
+                aria-selected="false" aria-controls="panel-hobbies">Interests</button>
+      </div>
+
+      {% assign entries = site.resume_entries | where: "section", "academia" | sort: "order" %}
+      <div class="resume-panel" id="panel-education" role="tabpanel"
+           aria-labelledby="tab-education" hidden>
+      <div class="timeline">
+        {% for entry in entries %}
+          {% unless forloop.last %}<div class="timeline-divider"></div>{% endunless %}
+          <div class="timeline-item" data-skills="{{ entry.skills | join: ',' }}" tabindex="0" role="button">
+            <span class="year">{{ entry.dateline }}</span>
+            <h3>{{ entry.title }}</h3>
+            <p class="org">{{ entry.organization }}</p>
+            {{ entry.content }}
+          </div>
+        {% endfor %}
+      </div>
+      </div>
+
+      {% assign entries = site.resume_entries | where: "section", "employment" | sort: "order" %}
+      <div class="resume-panel" id="panel-employment" role="tabpanel"
+           aria-labelledby="tab-employment">
+      <div class="timeline">
+        {% for entry in entries %}
+          {% unless forloop.last %}<div class="timeline-divider"></div>{% endunless %}
+          <div class="timeline-item" data-skills="{{ entry.skills | join: ',' }}" tabindex="0" role="button">
+            <span class="year">{{ entry.dateline }}</span>
+            <h3>{{ entry.title }}</h3>
+            <p class="org">{{ entry.organization }}</p>
+            {{ entry.content }}
+          </div>
+        {% endfor %}
+      </div>
+      </div>
+
+      {% assign entries = site.resume_entries | where: "section", "involvements" | sort: "order" %}
+      <div class="resume-panel" id="panel-experiences" role="tabpanel"
+           aria-labelledby="tab-experiences" hidden>
+      <div class="timeline">
+        {% for entry in entries %}
+          {% unless forloop.last %}<div class="timeline-divider"></div>{% endunless %}
+          <div class="timeline-item" data-skills="{{ entry.skills | join: ',' }}" tabindex="0" role="button">
+            <span class="year">{{ entry.dateline }}</span>
+            <h3>{{ entry.title }}</h3>
+            <p class="org">{{ entry.organization }}</p>
+            {{ entry.content }}
+          </div>
+        {% endfor %}
+      </div>
+      </div>
+
+      {% assign entries = site.resume_entries | where: "section", "awards" | sort: "order" %}
+      <div class="resume-panel" id="panel-awards" role="tabpanel"
+           aria-labelledby="tab-awards" hidden>
+      <div class="timeline">
+        {% for entry in entries %}
+          {% unless forloop.last %}<div class="timeline-divider"></div>{% endunless %}
+          <div class="timeline-item" data-skills="{{ entry.skills | join: ',' }}" tabindex="0" role="button">
+            <span class="year">{{ entry.dateline }}</span>
+            <h3>{{ entry.title }}</h3>
+            <p class="org">{{ entry.organization }}</p>
+            {{ entry.content }}
+          </div>
+        {% endfor %}
+      </div>
+      </div>
+
+      {% assign entries = site.resume_entries | where: "section", "interests" | sort: "order" %}
+      <div class="resume-panel" id="panel-hobbies" role="tabpanel"
+           aria-labelledby="tab-hobbies" hidden>
+      <div class="timeline">
+        {% for entry in entries %}
+          {% unless forloop.last %}<div class="timeline-divider"></div>{% endunless %}
+          <div class="timeline-item" data-skills="{{ entry.skills | join: ',' }}" tabindex="0" role="button">
+            <span class="year">{{ entry.dateline }}</span>
+            <h3>{{ entry.title }}</h3>
+            <p class="org">{{ entry.organization }}</p>
+            {{ entry.content }}
+          </div>
+        {% endfor %}
+      </div>
+      </div>
+
+    </div>  <!-- End of primary column -->
+
+    <!-- Secondary (right) column -->
+    <div class="resume-secondary" id="skillsPanel">
+      <button class="skills-close" id="skillsClose" aria-label="Close skills panel">&times;</button>
+      <button class="clear-filter-btn" id="clearFilter" hidden aria-label="Clear filter">Clear filter</button>
+      {% for cat in site.data.skills.categories %}
+      <div class="skill-group">
+        <h3>{{ cat.name }}</h3>
+        <ul class="skill-list">
+          {% for skill in site.data.skills.skills %}
+            {% if skill.category == cat.id %}
+          <li class="skill-item" data-id="{{ skill.id }}">{{ skill.label }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</main>
+
+<!-- ARIA live region for screen readers (P1-4) -->
+<div aria-live="polite" class="sr-only" id="filterStatus"></div>
+
+<footer>
+  <p>&copy; 2026 Shilong Pan. Built using locally hosted AI tools.</p>
+</footer>
+
+<!-- P2-4: external script replaces inline blocks -->
+<script src="resume.js" defer></script>
+
+<!-- Profile Popup -->
+<div class="profile-popup-overlay" id="profile-popup-overlay">
+  <div class="profile-popup">
+    <button class="profile-popup-close" aria-label="Close">&times;</button>
+    <img id="profile-popup-portrait" src="" alt="Shilong Pan" class="profile-popup-portrait" />
+    <div class="profile-popup-name">Shilong Pan</div>
+    <div class="profile-popup-bio">Hi, in case we haven't met,<br>here's what I look like!</div>
+  </div>
+</div>
+
+<script src="profile-popup.js"></script>
+
+</body>
+</html>

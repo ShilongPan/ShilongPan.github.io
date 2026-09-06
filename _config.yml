@@ -10,6 +10,11 @@ tagline: Developer, researcher, builder.
 markdown: kramdown
 highlighter: rouge
 
+# ── Collections ──
+collections:
+  resume_entries:
+    output: false        # entries are data only — never published as their own pages
+
 # ── URL / Base ──
 baseurl: ""
 url: ""

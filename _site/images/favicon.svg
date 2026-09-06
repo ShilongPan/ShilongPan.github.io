@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1a1a2e; }
+      .char { fill: #ffffff; }
+    }
+    @media (prefers-color-scheme: light) {
+      .bg { fill: #ffffff; }
+      .char { fill: #1a1a2e; }
+    }
+    /* Default for browsers that don't support media queries in SVG */
+    .bg { fill: #ffffff; }
+    .char { fill: #1a1a2e; }
+    .char {
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "WenQuanYi Micro Hei", sans-serif;
+      font-size: 42px;
+      font-weight: bold;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="12" ry="12"/>
+  <text class="char" x="32" y="34">潘</text>
+</svg>

@@ -1,0 +1,237 @@
+# Skills registry — single source of truth for the résumé skills panel.
+# Categories render in the order listed; skills within a category render in
+# the order listed. Entry files under _resume/ reference skill IDs only.
+#
+# Adding a new skill: append ONE item to `skills:` with an existing `category` id.
+# Adding a new category: add one item to `categories:` plus the skills that reference it.
+
+categories:
+  - id: leadership-management
+    name: "Leadership & Management"
+  - id: communication
+    name: "Communication"
+  - id: analytical
+    name: "Analytical Skills"
+  - id: productivity-programming
+    name: "Productivity & Programming Software"
+  - id: laboratory-scientific
+    name: "Laboratory & Scientific"
+  - id: design-creative
+    name: "Design & Creative"
+  - id: spoken-languages
+    name: "Spoken Languages"
+  - id: physical-athletic
+    name: "Physical & Athletic"
+  - id: personal-civic
+    name: "Personal & Civic"
+
+skills:
+  # Leadership & Management
+  - id: leadership
+    label: "Leadership"
+    category: leadership-management
+  - id: supervision
+    label: "Supervision"
+    category: leadership-management
+  - id: mentorship
+    label: "Mentorship"
+    category: leadership-management
+  - id: teaching
+    label: "Teaching"
+    category: leadership-management
+  - id: project-management
+    label: "Project Management"
+    category: leadership-management
+  - id: budget-management
+    label: "Budget Management"
+    category: leadership-management
+  - id: community-building
+    label: "Community Building"
+    category: leadership-management
+  - id: team-leadership
+    label: "Team Leadership"
+    category: leadership-management
+  - id: teamwork
+    label: "Teamwork"
+    category: leadership-management
+  - id: service
+    label: "Service"
+    category: leadership-management
+
+  # Communication
+  - id: communication
+    label: "Communication"
+    category: communication
+  - id: presentation
+    label: "Presentation"
+    category: communication
+  - id: public-speaking
+    label: "Public Speaking"
+    category: communication
+  - id: collaboration
+    label: "Collaboration"
+    category: communication
+  - id: conflict-resolution
+    label: "Conflict Resolution"
+    category: communication
+  - id: cultural-sensitivity
+    label: "Cultural Sensitivity"
+    category: communication
+  - id: retail-service
+    label: "Retail Service"
+    category: communication
+  - id: technical-writing
+    label: "Technical Writing"
+    category: communication
+  - id: scientific-communication
+    label: "Scientific Communication"
+    category: communication
+
+  # Analytical Skills
+  - id: problem-solving
+    label: "Problem Solving"
+    category: analytical
+  - id: critical-thinking
+    label: "Critical Thinking"
+    category: analytical
+  - id: adaptability
+    label: "Adaptability"
+    category: analytical
+  - id: time-management
+    label: "Time Management"
+    category: analytical
+  - id: prioritization
+    label: "Prioritization"
+    category: analytical
+  - id: negotiation
+    label: "Negotiation"
+    category: analytical
+  - id: data-analysis
+    label: "Data Analysis & Visualization"
+    category: analytical
+  - id: research
+    label: "Research"
+    category: analytical
+  - id: experimental-design
+    label: "Experimental Design"
+    category: analytical
+  - id: academic-excellence
+    label: "Academic Excellence"
+    category: analytical
+  - id: competitive-awards
+    label: "Competitive Awards"
+    category: analytical
+  - id: grant-writing
+    label: "Grant Writing"
+    category: analytical
+  - id: continuous-learning
+    label: "Continuous Learning"
+    category: analytical
+  - id: curiosity
+    label: "Curiosity"
+    category: analytical
+  - id: reading
+    label: "Reading"
+    category: analytical
+
+  # Productivity & Programming Software
+  - id: matlab
+    label: "Matlab"
+    category: productivity-programming
+  - id: git
+    label: "Git"
+    category: productivity-programming
+  - id: linux
+    label: "Linux"
+    category: productivity-programming
+  - id: zotero
+    label: "Zotero"
+    category: productivity-programming
+  - id: office-suite
+    label: "Office Suite"
+    category: productivity-programming
+
+  # Laboratory & Scientific
+  - id: fluorescence-microscopy
+    label: "Fluorescence Microscopy"
+    category: laboratory-scientific
+  - id: aseptic-technique
+    label: "Aseptic Technique"
+    category: laboratory-scientific
+  - id: cell-culture
+    label: "Cell Culture"
+    category: laboratory-scientific
+  - id: lab-techniques
+    label: "Lab Techniques"
+    category: laboratory-scientific
+
+  # Design & Creative
+  - id: photoshop
+    label: "Photoshop"
+    category: design-creative
+  - id: lightroom
+    label: "Lightroom"
+    category: design-creative
+  - id: vector-graphics
+    label: "Vector Graphics Design"
+    category: design-creative
+  - id: photography
+    label: "Photography"
+    category: design-creative
+  - id: model-direction
+    label: "Creative Direction"
+    category: design-creative
+  - id: 3d-printing
+    label: "3D Printing & Design"
+    category: design-creative
+  - id: design
+    label: "Design"
+    category: design-creative
+  - id: creativity
+    label: "Creativity"
+    category: design-creative
+  - id: storytelling
+    label: "Storytelling"
+    category: design-creative
+  - id: technical-repair
+    label: "Technical Repair"
+    category: design-creative
+
+  # Spoken Languages
+  - id: english
+    label: "English (Native)"
+    category: spoken-languages
+  - id: mandarin
+    label: "Mandarin (Conversational)"
+    category: spoken-languages
+  - id: french
+    label: "French (Beginner)"
+    category: spoken-languages
+  - id: asl
+    label: "ASL (Beginner)"
+    category: spoken-languages
+
+  # Physical & Athletic
+  - id: physical-training
+    label: "Physical Training"
+    category: physical-athletic
+  - id: climbing
+    label: "Climbing"
+    category: physical-athletic
+  - id: fitness
+    label: "Fitness"
+    category: physical-athletic
+  - id: discipline
+    label: "Discipline"
+    category: physical-athletic
+  - id: perseverance
+    label: "Perseverance"
+    category: physical-athletic
+
+  # Personal & Civic
+  - id: volunteerism
+    label: "Volunteerism"
+    category: personal-civic
+  - id: philanthropy
+    label: "Philanthropy"
+    category: personal-civic
