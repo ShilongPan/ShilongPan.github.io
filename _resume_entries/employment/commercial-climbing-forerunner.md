@@ -12,5 +12,8 @@ skills:
   - problem-solving
   - english
   - physical-training
+  - teamwork
+  - prioritization
+  - continuous-learning
 ---
 Test and adjust new climbing routes to ensure accessibility, safety, and quality. Approach problems with diverse and flexible attitudes to create solutions as part of a skilled team. Acquire new insight into route design and integrate into related roles.

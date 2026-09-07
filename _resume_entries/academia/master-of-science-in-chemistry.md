@@ -26,5 +26,6 @@ skills:
   - lab-techniques
   - vector-graphics
   - 3d-printing
+  - continuous-learning
 ---
 Thesis: Extracellular Vesicles INFOCUS: A Novel Technique for Biological Nanoparticle Size Analysis

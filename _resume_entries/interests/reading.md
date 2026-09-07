@@ -1,12 +1,12 @@
 ---
 section: interests
-title: "Reading"
-organization: "Personal Pursuit"
+title: "Art and Literature"
+organization: "Recreation"
 dateline: "Ongoing"
-order: 5
+order: 1
 skills:
-  - reading
   - continuous-learning
-  - curiosity
+  - communication
+  - critical-thinking
 ---
 Read widely across science, philosophy, and fiction to maintain intellectual curiosity and cross-pollinate ideas between disciplines.

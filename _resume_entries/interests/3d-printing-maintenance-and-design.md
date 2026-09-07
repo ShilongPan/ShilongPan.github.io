@@ -1,12 +1,13 @@
 ---
 section: interests
-title: "3D Printing Maintenance and Design"
-organization: "Personal Pursuit"
+title: "3D Printing and Design"
+organization: "Creative Interest"
 dateline: "2023 — Present"
-order: 1
+order: 5
 skills:
-  - 3d-printing
-  - design
-  - problem-solving
+  - research
+  - git
+  - linux
+  - 3d-modelling
 ---
 Design and maintain 3D printers, troubleshoot mechanical and firmware issues, and create custom parts and prototypes for personal and lab projects.

@@ -5,9 +5,6 @@ organization: "University of British Columbia"
 dateline: "2018 — 2022"
 order: 2
 skills:
-  - leadership
-  - mentorship
-  - teaching
   - project-management
   - communication
   - presentation
@@ -18,15 +15,14 @@ skills:
   - critical-thinking
   - adaptability
   - time-management
-  - prioritization
   - negotiation
   - data-analysis
   - research
   - office-suite
   - zotero
   - lab-techniques
-  - photoshop
   - english
+  - cell-culture
 ---
 Specialization in Medical and Molecular Biology
 Honours Thesis: Developing Extracellular Vesicle Labelling Protocols for Identification and Analysis

@@ -1,12 +1,9 @@
 ---
 section: awards
-title: "NSERC CREATE Graduate Scholarship (CGS-M)"
+title: "NSERC CGSM"
 organization: "Natural Sciences and Engineering Research Council of Canada"
 dateline: "2022"
 order: 1
-skills:
-  - research
-  - grant-writing
-  - competitive-awards
+skills: []
 ---
-National graduate scholarship supporting master’s-level research in engineering and applied science.
+National graduate scholarship supporting master's-level research in engineering and applied science.

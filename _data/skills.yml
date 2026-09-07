@@ -48,9 +48,6 @@ skills:
   - id: community-building
     label: "Community Building"
     category: leadership-management
-  - id: team-leadership
-    label: "Team Leadership"
-    category: leadership-management
   - id: teamwork
     label: "Teamwork"
     category: leadership-management
@@ -115,23 +112,8 @@ skills:
   - id: experimental-design
     label: "Experimental Design"
     category: analytical
-  - id: academic-excellence
-    label: "Academic Excellence"
-    category: analytical
-  - id: competitive-awards
-    label: "Competitive Awards"
-    category: analytical
-  - id: grant-writing
-    label: "Grant Writing"
-    category: analytical
   - id: continuous-learning
     label: "Continuous Learning"
-    category: analytical
-  - id: curiosity
-    label: "Curiosity"
-    category: analytical
-  - id: reading
-    label: "Reading"
     category: analytical
 
   # Productivity & Programming Software
@@ -184,17 +166,14 @@ skills:
   - id: 3d-printing
     label: "3D Printing & Design"
     category: design-creative
+  - id: 3d-modelling
+    label: "3D Modelling"
+    category: design-creative
   - id: design
     label: "Design"
     category: design-creative
   - id: creativity
     label: "Creativity"
-    category: design-creative
-  - id: storytelling
-    label: "Storytelling"
-    category: design-creative
-  - id: technical-repair
-    label: "Technical Repair"
     category: design-creative
 
   # Spoken Languages
@@ -218,20 +197,7 @@ skills:
   - id: climbing
     label: "Climbing"
     category: physical-athletic
-  - id: fitness
-    label: "Fitness"
-    category: physical-athletic
-  - id: discipline
-    label: "Discipline"
-    category: physical-athletic
-  - id: perseverance
-    label: "Perseverance"
+  - id: safety-awareness
+    label: "Safety Awareness"
     category: physical-athletic
 
-  # Personal & Civic
-  - id: volunteerism
-    label: "Volunteerism"
-    category: personal-civic
-  - id: philanthropy
-    label: "Philanthropy"
-    category: personal-civic

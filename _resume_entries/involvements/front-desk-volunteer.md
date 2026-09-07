@@ -6,10 +6,9 @@ dateline: "2016 — 2020"
 order: 9
 skills:
   - communication
-  - mentorship
+  - cultural-sensitivity
   - service
-  - volunteerism
-  - adaptability
-  - conflict-resolution
+  - english
+  - mandarin
 ---
 Provided visitor assistance and directional guidance at the hospital front desk, managed phone calls, and supported administrative staff with daily operations during volunteer shifts.
