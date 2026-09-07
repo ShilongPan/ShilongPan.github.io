@@ -25,12 +25,20 @@ if (trigger && overlay && portrait) {
     });
   }
 
-  closeBtn.addEventListener('click', () => {
-    overlay.style.display = 'none';
-  });
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+  }
 
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) {
+      overlay.style.display = 'none';
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.style.display === 'flex') {
       overlay.style.display = 'none';
     }
   });

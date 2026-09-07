@@ -134,6 +134,7 @@
     <div class="resume-secondary" id="skillsPanel">
       <button class="skills-close" id="skillsClose" aria-label="Close skills panel">&times;</button>
       <button class="clear-filter-btn" id="clearFilter" hidden aria-label="Clear filter">Clear filter</button>
+      <div class="skills-scroll">
       {% for cat in site.data.skills.categories %}
       <div class="skill-group">
         <h3>{{ cat.name }}</h3>
@@ -146,6 +147,7 @@
         </ul>
       </div>
       {% endfor %}
+      </div>
     </div>
 
   </div>

@@ -200,6 +200,14 @@
     });
   }
 
+  // Escape closes the slide-out panel (mobile)
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && panel && panel.classList.contains('open')) {
+      closePanel();
+      clearAll();
+    }
+  });
+
   // ── P2-3: "Clear filter" button in the skills panel ───────────────────────
   if (clearFilterBtn) {
     clearFilterBtn.addEventListener('click', function () {
@@ -271,11 +279,8 @@
         openPanel();
         return;
       }
-      if (state.pinnedItem === item) {
-        pinHighlight(item); // re-pin refreshes the filter (idempotent)
-      } else {
-        pinHighlight(item);
-      }
+      // Re-pinning an already-pinned item is idempotent (clearAll + re-pin).
+      pinHighlight(item);
     });
 
     item.addEventListener('mouseenter', function () { scheduleItemHover(this); });

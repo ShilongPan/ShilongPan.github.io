@@ -27,7 +27,6 @@ skills:
   - lab-techniques
   - photoshop
   - english
-  - test-item
 ---
 Specialization in Medical and Molecular Biology
 Honours Thesis: Developing Extracellular Vesicle Labelling Protocols for Identification and Analysis
