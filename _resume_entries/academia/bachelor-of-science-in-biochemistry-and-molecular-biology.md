@@ -24,5 +24,6 @@ skills:
   - english
   - cell-culture
 ---
-Specialization in Medical and Molecular Biology
+Option in Medical and Molecular Biology
+
 Honours Thesis: Developing Extracellular Vesicle Labelling Protocols for Identification and Analysis
