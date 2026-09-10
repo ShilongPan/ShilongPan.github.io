@@ -30,4 +30,4 @@ skills:
 ---
 Thesis: Extracellular Vesicles INFOCUS: A Novel Technique for Biological Nanoparticle Size Analysis
 
-NSERC CGS-M,UBCO Graduate Research Scholarship
+NSERC CGS-M, UBCO Graduate Research Scholarship
