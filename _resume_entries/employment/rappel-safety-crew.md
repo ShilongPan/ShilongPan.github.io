@@ -1,5 +1,5 @@
 ---
-section: involvements
+section: employment
 title: "Rappel Safety Crew"
 organization: "Easter Seals, DropZone Charity Event"
 dateline: "2021 — Present"
