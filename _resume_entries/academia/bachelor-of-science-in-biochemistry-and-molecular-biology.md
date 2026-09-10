@@ -27,3 +27,5 @@ skills:
 Option in Medical and Molecular Biology
 
 Honours Thesis: Developing Extracellular Vesicle Labelling Protocols for Identification and Analysis
+
+Major Entrance Scholarship, Valley First Entrance Scholarship, Presidential Scholars Award, Deputy Vice-Chancellor Scholarship, NSERC USRA

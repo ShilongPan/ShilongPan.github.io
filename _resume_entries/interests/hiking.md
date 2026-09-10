@@ -9,4 +9,4 @@ skills:
   - safety-awareness
   - physical-training
 ---
-Enjoys hiking across the Okanagan, managing pace, route, and safety while building endurance.
+Appreciate the beauty and abundance of natural wonders in my home of BC. Diversify my types of exercise to maintain good general fitness. Evaluate more challenging approaches for safety and consideration of other hikers. 

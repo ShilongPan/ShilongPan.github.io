@@ -1,6 +1,6 @@
 ---
 section: interests
-title: "Art and Literature"
+title: "Fine Art and Literature"
 organization: "Recreation"
 dateline: "Ongoing"
 order: 1
@@ -9,4 +9,4 @@ skills:
   - communication
   - critical-thinking
 ---
-Read widely across science, philosophy, and fiction to maintain intellectual curiosity and cross-pollinate ideas between disciplines.
+Appreciate interesting stories, productions, and ideas across a variety of mediums. Enjoy discussion with peers from diverse educational, cultural, and personal backgrounds to broaden my worldviews and understanding of other. Practice both experiencing things presently and critically analyzing concepts, themes, and components of art.
