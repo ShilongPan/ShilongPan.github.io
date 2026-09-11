@@ -40,10 +40,10 @@
                 aria-selected="true"  aria-controls="panel-employment">Employment</button>
         <button class="resume-tab" id="tab-education" role="tab"
                 aria-selected="false" aria-controls="panel-education">Academia</button>
+        <button class="resume-tab" id="tab-involvements" role="tab"
+                aria-selected="false" aria-controls="panel-involvements">Involvements</button>
         <button class="resume-tab" id="tab-experiences" role="tab"
-                aria-selected="false" aria-controls="panel-experiences">Involvements</button>
-        <button class="resume-tab" id="tab-awards" role="tab"
-                aria-selected="false" aria-controls="panel-awards">Awards</button>
+                aria-selected="false" aria-controls="panel-experiences">Experiences</button>
         <button class="resume-tab" id="tab-hobbies" role="tab"
                 aria-selected="false" aria-controls="panel-hobbies">Interests</button>
       </div>
@@ -81,8 +81,8 @@
       </div>
 
       {% assign entries = site.resume_entries | where: "section", "involvements" | sort: "order" %}
-      <div class="resume-panel" id="panel-experiences" role="tabpanel"
-           aria-labelledby="tab-experiences" hidden>
+      <div class="resume-panel" id="panel-involvements" role="tabpanel"
+           aria-labelledby="tab-involvements" hidden>
       <div class="timeline">
         {% for entry in entries %}
           {% unless forloop.last %}<div class="timeline-divider"></div>{% endunless %}
@@ -96,16 +96,15 @@
       </div>
       </div>
 
-      {% assign entries = site.resume_entries | where: "section", "awards" | sort: "order" %}
-      <div class="resume-panel" id="panel-awards" role="tabpanel"
-           aria-labelledby="tab-awards" hidden>
+      {% assign entries = site.resume_entries | where: "section", "experiences" | sort: "order" %}
+      <div class="resume-panel" id="panel-experiences" role="tabpanel"
+           aria-labelledby="tab-experiences" hidden>
       <div class="timeline">
         {% for entry in entries %}
           {% unless forloop.last %}<div class="timeline-divider"></div>{% endunless %}
           <div class="timeline-item" data-skills="{{ entry.skills | join: ',' }}" tabindex="0" role="button">
             <span class="year">{{ entry.dateline }}</span>
             <h3>{{ entry.title }}</h3>
-            <p class="org">{{ entry.organization }}</p>
             {{ entry.content }}
           </div>
         {% endfor %}
