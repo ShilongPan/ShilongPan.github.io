@@ -7,4 +7,4 @@ order: 4
 skills:
   - physical-training
 ---
-Regular snowboarder in the Whistler and Okanagan regions, focusing on progressive skill development and enjoying mountain terrain across all conditions.
+Enjoy snowboarding to stay active during the winter. Keep reflexes sharp and mind flexible. Progressively improve skills while prioritizing safety.
