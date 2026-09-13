@@ -997,20 +997,37 @@ footer {
   box-shadow: 0 4px 12px rgba(29, 53, 87, .2);
 }
 
-/* ── Resume tabs ── */
+/* ── Resume tabs: infinite loop, active tab anchored to the left ──
+   .resume-tabs  is a fixed-width clipping window (the visible strip).
+   .resume-tab-track is a flex row that JS shifts with translateX so the
+   active tab always sits at the left edge; JS also appends trailing
+   clones so the strip wraps seamlessly.                        */
 .resume-tabs {
-  display: flex;
-  gap: 0;
+  position: relative;
   border-bottom: 2px solid var(--border);
   margin-bottom: 1.5rem;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  overflow: hidden;
 }
 
-.resume-tabs::-webkit-scrollbar {
-  display: none;
+.resume-tab-track {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  width: max-content;
+  will-change: transform;
+  transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Non-interactive loop fillers appended by resume.js */
+.resume-tab.tab-clone {
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resume-tab-track {
+    transition: none;
+  }
 }
 
 .resume-tab {

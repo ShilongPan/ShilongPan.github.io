@@ -36,16 +36,18 @@
     <div class="resume-primary">
 
       <div class="resume-tabs" role="tablist" aria-label="Résumé sections">
-        <button class="resume-tab active" id="tab-employment" role="tab"
-                aria-selected="true"  aria-controls="panel-employment">Employment</button>
-        <button class="resume-tab" id="tab-education" role="tab"
-                aria-selected="false" aria-controls="panel-education">Academia</button>
-        <button class="resume-tab" id="tab-involvements" role="tab"
-                aria-selected="false" aria-controls="panel-involvements">Involvements</button>
-        <button class="resume-tab" id="tab-experiences" role="tab"
-                aria-selected="false" aria-controls="panel-experiences">Experiences</button>
-        <button class="resume-tab" id="tab-hobbies" role="tab"
-                aria-selected="false" aria-controls="panel-hobbies">Interests</button>
+        <div class="resume-tab-track">
+          <button class="resume-tab active" data-index="0" id="tab-employment" role="tab"
+                  aria-selected="true"  aria-controls="panel-employment">Employment</button>
+          <button class="resume-tab" data-index="1" id="tab-education" role="tab"
+                  aria-selected="false" aria-controls="panel-education">Academia</button>
+          <button class="resume-tab" data-index="2" id="tab-involvements" role="tab"
+                  aria-selected="false" aria-controls="panel-involvements">Involvements</button>
+          <button class="resume-tab" data-index="3" id="tab-experiences" role="tab"
+                  aria-selected="false" aria-controls="panel-experiences">Experiences</button>
+          <button class="resume-tab" data-index="4" id="tab-hobbies" role="tab"
+                  aria-selected="false" aria-controls="panel-hobbies">Interests</button>
+        </div>
       </div>
 
       {% assign entries = site.resume_entries | where: "section", "academia" | sort: "order" %}
