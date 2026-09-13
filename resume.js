@@ -140,21 +140,101 @@
     announce(matchCount);
   }
 
-  // ── Tabs: switch panels ────────────────────────────────────────────────────
-  var tabs   = document.querySelectorAll('.resume-tab');
-  var panels = document.querySelectorAll('.resume-panel');
+  // ── Tabs: infinite-loop carousel (active tab always anchored to the left) ──
+  //
+  //  .resume-tabs  is a fixed-width clipping window (the visible strip).
+  //  .resume-tab-track holds the N real tabs plus trailing clones and is
+  //  shifted with translateX so the ACTIVE tab is always flush to the left.
+  //  Clicking any tab animates the track until that tab is the leftmost one.
+  var tablist  = document.querySelector('.resume-tabs');
+  var tabTrack = tablist ? tablist.querySelector('.resume-tab-track') : null;
+  var panels   = document.querySelectorAll('.resume-panel');
 
-  function activateTab(tab) {
-    panels.forEach(function (p) { p.hidden = true; });
-    var targetPanel = document.getElementById('panel-' + tab.id.replace('tab-', ''));
-    if (targetPanel) targetPanel.hidden = false;
-    tabs.forEach(function (t) {
-      var selected = (t === tab);
-      t.classList.toggle('active', selected);
-      t.setAttribute('aria-selected', selected ? 'true' : 'false');
+  // Canonical tab order. Read the real tabs first (data-index drives the order),
+  // BEFORE any clones are appended.
+  var logicalTabs = Array.prototype.slice.call(
+    (tabTrack ? tabTrack : document).querySelectorAll('.resume-tab')
+  ).sort(function (a, b) {
+    return (parseInt(a.dataset.index, 10) || 0) - (parseInt(b.dataset.index, 10) || 0);
+  });
+  var N = logicalTabs.length;
+
+  // Append non-interactive clones so the strip wraps seamlessly. A trailing set
+  // is enough: with the active tab pinned to the left edge, a clicked tab is
+  // always within the next N-1 slots, and after that move the tabs to the
+  // right of the (new) active tab are all real ones. The clone simply fills the
+  // wrap-around gap and is never highlighted or clickable.
+  if (tabTrack && N > 0) {
+    logicalTabs.forEach(function (t) {
+      var c = t.cloneNode(true);
+      c.classList.add('tab-clone');
+      c.removeAttribute('id');            // keep the real tab the sole id owner
+      c.setAttribute('aria-hidden', 'true');
+      c.setAttribute('tabindex', '-1');
+      tabTrack.appendChild(c);
     });
-    // Scroll the active tab into view within the tab bar
-    tab.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: 'auto' });
+  }
+
+  // Width of one slot (real tab + gap). Recomputed on resize — fonts/padding
+  // are responsive, so the pixel step changes across breakpoints.
+  var step = 0;
+  function measureStep() {
+    var a = tabTrack.children[0], b = tabTrack.children[1];
+    if (a && b) step = Math.round(b.offsetLeft - a.offsetLeft);
+  }
+
+  var activeIndex = 0;   // logical index of the active tab (0..N-1)
+  var anchor      = 0;   // track slot pinned to the left edge
+
+  // Position the track so the active tab is exactly at the left edge.
+  // animate=false hard-jumps (no transition); animate=true eases via CSS.
+  function positionTrack(animate) {
+    if (!tabTrack || !step) return;
+    tabTrack.style.transition = animate ? '' : 'none';
+    tabTrack.style.transform  = 'translateX(' + (-anchor * step) + 'px)';
+    if (!animate) {
+      void tabTrack.offsetWidth;          // commit the jump before re-enabling transitions
+      tabTrack.style.transition = '';
+    }
+  }
+
+  // Paint the active state on the real tabs; clones stay neutral.
+  function paintActive() {
+    logicalTabs.forEach(function (t) {
+      var isSel = (t === logicalTabs[activeIndex]);
+      t.classList.toggle('active', isSel);
+      t.setAttribute('aria-selected', isSel ? 'true' : 'false');
+    });
+    if (tabTrack) tabTrack.querySelectorAll('.tab-clone').forEach(function (c) { c.classList.remove('active'); });
+  }
+
+  function showPanelFor(index) {
+    var slug = logicalTabs[index].id.replace('tab-', '');
+    panels.forEach(function (p) { p.hidden = true; });
+    var target = document.getElementById('panel-' + slug);
+    if (target) target.hidden = false;
+  }
+
+  function activateTab(index, animate) {
+    if (N === 0) return;
+    index = ((index % N) + N) % N;            // normalise (allows +N for "next")
+    var prev = activeIndex;
+    activeIndex = index;
+
+    showPanelFor(index);
+    paintActive();
+
+    // Choose the slot to land on: the one that needs the least movement, then
+    // snap the anchor back into the real-tab region [0, N-1] (whole loops only,
+    // so the visible window is unchanged) so we never drift off the track end.
+    if (step && N > 1) {
+      var fwd  = (index - prev + N) % N;      // 0..N-1, steps right of current active
+      var base = anchor + fwd;
+      if (base >= N) base -= N;
+      if (base < 0)  base += N;
+      anchor = base;
+    }
+    positionTrack(animate !== false);
 
     // P1-2 documented behaviour on tab switch:
     //  - a pinned SKILL persists and is re-applied to the new panel;
@@ -167,27 +247,43 @@
     }
   }
 
-  tabs.forEach(function (tab) {
-    tab.addEventListener('click', function () { activateTab(this); });
-  });
-
-  // Keyboard navigation on the tablist (arrows wrap, Home/End jump)
-  var tablist = document.querySelector('.resume-tabs');
-  if (tablist) {
-    tablist.addEventListener('keydown', function (e) {
-      var i = Array.prototype.indexOf.call(tabs, e.target);
-      if (i === -1) return;
-      var next = null;
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabs.length;
-      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length;
-      else if (e.key === 'Home') next = 0;
-      else if (e.key === 'End') next = tabs.length - 1;
-      else return;
-      e.preventDefault();
-      tabs[next].focus();
-      activateTab(tabs[next]);
+  // Clicking a tab scrolls the loop until it reaches the left edge.
+  if (tabTrack) {
+    tabTrack.addEventListener('click', function (e) {
+      var tab = e.target.closest('.resume-tab:not(.tab-clone)');
+      if (!tab) return;
+      activateTab(parseInt(tab.dataset.index, 10), true);
     });
   }
+
+  // Keyboard navigation on the tablist (arrows wrap, Home/End jump) —
+  // "next/prev" always follow the loop direction, so it never reverses.
+  if (tablist) {
+    tablist.addEventListener('keydown', function (e) {
+      var focusTab = document.activeElement;
+      if (!focusTab || !focusTab.classList || !focusTab.classList.contains('resume-tab')) return;
+      var i = parseInt(focusTab.dataset.index, 10); if (isNaN(i)) i = 0;
+      var next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = i + 1;      // +N wraps
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = i - 1 + N; // wrap to the other side
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End')  next = N - 1;
+      else return;
+      e.preventDefault();
+      logicalTabs[next % N].focus();
+      activateTab(next, true);
+    });
+  }
+
+  // Re-measure the slot width and re-anchor when the layout changes size.
+  window.addEventListener('resize', function () {
+    measureStep();
+    positionTrack(false);
+  });
+
+  measureStep();
+  positionTrack(false);
+  paintActive();
 
   // ── Mobile: slide-out panel ────────────────────────────────────────────────
   function openPanel()  { if (panel) panel.classList.add('open'); }
