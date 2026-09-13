@@ -18,4 +18,4 @@ skills:
   - design
   - continuous-learning
 ---
-Capture landscapes, portraits, and event photography. Edit and curate images using Lightroom, developing a personal visual style and storytelling approach.
+Capture or create memories and media for personal or commercial use. Study optics, lighting, photographic and editing techniques to continually improve the quality of my work. Work with creative partners to support their vision while also demonstrating my technical skill and creative prowess. Primarily photograph sports, events, and lifestyle while also branching out to wedding, portrait, and landscape photography.
