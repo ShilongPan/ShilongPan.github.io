@@ -142,10 +142,19 @@
 
   // ── Tabs: infinite-loop carousel (active tab always anchored to the left) ──
   //
-  //  .resume-tabs  is a fixed-width clipping window (the visible strip).
-  //  .resume-tab-track holds the N real tabs plus trailing clones and is
-  //  shifted with translateX so the ACTIVE tab is always flush to the left.
-  //  Clicking any tab animates the track until that tab is the leftmost one.
+  //  .resume-tabs        the visible window (overflow hidden).
+  //  .resume-tab-track   the N real tabs plus one set of trailing clones;
+  //                      JS shifts it with translateX so the ACTIVE tab is
+  //                      always flush against the left edge.
+  //
+  //  Clicking any tab — real or clone — eases the strip until that tab is
+  //  the leftmost one, then snaps invisibly onto the equivalent real-tab
+  //  slot (the exact same window, one loop back), so the loop is endless.
+  //
+  //  "Never two copies of one tab": JS caps the window at one full period
+  //  minus the WIDEST tab — the widest window that can never fit two copies
+  //  of the same tab, at any anchor and even mid-animation (the track is
+  //  periodic with that period, and a copy reappears exactly one period out).
   var tablist  = document.querySelector('.resume-tabs');
   var tabTrack = tablist ? tablist.querySelector('.resume-tab-track') : null;
   var panels   = document.querySelectorAll('.resume-panel');
@@ -159,11 +168,10 @@
   });
   var N = logicalTabs.length;
 
-  // Append non-interactive clones so the strip wraps seamlessly. A trailing set
-  // is enough: with the active tab pinned to the left edge, a clicked tab is
-  // always within the next N-1 slots, and after that move the tabs to the
-  // right of the (new) active tab are all real ones. The clone simply fills the
-  // wrap-around gap and is never highlighted or clickable.
+  // Append one loop of trailing clones so the strip wraps seamlessly. They
+  // are full siblings in the track — clickable, and the click handler reads
+  // the slot straight from the DOM — so later iterations navigate exactly
+  // like their real tab.
   if (tabTrack && N > 0) {
     logicalTabs.forEach(function (t) {
       var c = t.cloneNode(true);
@@ -175,25 +183,80 @@
     });
   }
 
-  // Width of one slot (real tab + gap). Recomputed on resize — fonts/padding
-  // are responsive, so the pixel step changes across breakpoints.
-  var step = 0;
-  function measureStep() {
-    var a = tabTrack.children[0], b = tabTrack.children[1];
-    if (a && b) step = Math.round(b.offsetLeft - a.offsetLeft);
+  // Track geometry. Tab widths are NOT uniform (the labels differ in length),
+  // so each slot's left edge is measured individually from the DOM instead of
+  // derived from a single step.
+  var slotOffsets = [];   // slotOffsets[0..N-1]: left edge of each real tab
+  var setWidth    = 0;    // one full loop of real tabs — the track period
+
+  function measure() {
+    if (!tabTrack || !N) return;
+    var maxTab = 0;
+    for (var i = 0; i < N; i++) {
+      var el = tabTrack.children[i];
+      slotOffsets[i] = el.offsetLeft;
+      if (el.offsetWidth > maxTab) maxTab = el.offsetWidth;
+    }
+    var last = tabTrack.children[N - 1];
+    setWidth = last.offsetLeft + last.offsetWidth;
+    // "Never two copies of one tab at once." The track is periodic with
+    // period `setWidth`, so a window W shows the same tab twice iff
+    // W > setWidth − (that tab's width). The widest tab is the binding case,
+    // so cap the window at one full period minus the widest tab: the widest
+    // window that can never contain a duplicate — at any anchor, and even
+    // mid-animation (verified numerically: one pixel wider leaks a sliver).
+    tablist.style.maxWidth = Math.max(0, setWidth - maxTab) + 'px';
+  }
+
+  // Pixel offset of ANY track slot (clones included) from the track start.
+  function offsetOf(slot) {
+    slot = Math.max(0, Math.round(slot));
+    return Math.floor(slot / N) * setWidth + slotOffsets[slot % N];
   }
 
   var activeIndex = 0;   // logical index of the active tab (0..N-1)
-  var anchor      = 0;   // track slot pinned to the left edge
+  var anchor      = 0;   // real-tab slot pinned to the left edge (0..N-1)
+  var trackBusy   = false;
 
-  // Position the track so the active tab is exactly at the left edge.
-  // animate=false hard-jumps (no transition); animate=true eases via CSS.
-  function positionTrack(animate) {
-    if (!tabTrack || !step) return;
-    tabTrack.style.transition = animate ? '' : 'none';
-    tabTrack.style.transform  = 'translateX(' + (-anchor * step) + 'px)';
-    if (!animate) {
-      void tabTrack.offsetWidth;          // commit the jump before re-enabling transitions
+  function setTransform(offset, animated) {
+    tabTrack.style.transition = animated ? '' : 'none';
+    tabTrack.style.transform  = 'translateX(' + (-offset) + 'px)';
+  }
+
+  // Ease the left edge onto `slot` (a track slot: real tab or clone), then
+  // settle on the equivalent real-tab slot — the identical window one loop
+  // back, so the snap is invisible and the loop can continue forever.
+  function moveTrack(slot, animate) {
+    if (!tabTrack || !setWidth) return;
+    slot = Math.max(0, Math.min(2 * N - 1, Math.round(slot)));
+
+    var prevAnchor = anchor;
+    anchor = slot % N;
+    var travel = offsetOf(slot) - offsetOf(prevAnchor);
+
+    // With prefers-reduced-motion the CSS kills the transition, so
+    // transitionend would never fire and trackBusy would be stranded.
+    var transitionOn = (parseFloat(getComputedStyle(tabTrack).transitionDuration) || 0) > 0;
+
+    if (animate && transitionOn && Math.abs(travel) > 1) {
+      trackBusy = true;
+      setTransform(offsetOf(slot), true);
+      var onEnd = function (ev) {
+        if (ev && (ev.target !== tabTrack || ev.propertyName !== 'transform')) return;
+        tabTrack.removeEventListener('transitionend', onEnd);
+        trackBusy = false;
+        // Wait a frame so the incoming transition is finished before we swap
+        // it off for the seamless settle (avoids a competing transition).
+        requestAnimationFrame(function () {
+          setTransform(offsetOf(anchor), false);
+          void tabTrack.offsetWidth;              // flush the jump
+          tabTrack.style.transition = '';         // restore the CSS transition
+        });
+      };
+      tabTrack.addEventListener('transitionend', onEnd);
+    } else {
+      setTransform(offsetOf(anchor), false);
+      void tabTrack.offsetWidth;
       tabTrack.style.transition = '';
     }
   }
@@ -205,7 +268,9 @@
       t.classList.toggle('active', isSel);
       t.setAttribute('aria-selected', isSel ? 'true' : 'false');
     });
-    if (tabTrack) tabTrack.querySelectorAll('.tab-clone').forEach(function (c) { c.classList.remove('active'); });
+    if (tabTrack) {
+      tabTrack.querySelectorAll('.tab-clone').forEach(function (c) { c.classList.remove('active'); });
+    }
   }
 
   function showPanelFor(index) {
@@ -215,26 +280,16 @@
     if (target) target.hidden = false;
   }
 
-  function activateTab(index, animate) {
+  // `targetSlot` is the clicked tab's slot in the track (real tab or clone);
+  // `animate` defaults to true (smooth carousel motion).
+  function activateTab(targetSlot, animate) {
     if (N === 0) return;
-    index = ((index % N) + N) % N;            // normalise (allows +N for "next")
-    var prev = activeIndex;
-    activeIndex = index;
+    var slot = Math.max(0, Math.min(2 * N - 1, Math.round(targetSlot)));
+    activeIndex = slot % N;                   // logical index of the clicked tab
 
-    showPanelFor(index);
+    showPanelFor(activeIndex);
     paintActive();
-
-    // Choose the slot to land on: the one that needs the least movement, then
-    // snap the anchor back into the real-tab region [0, N-1] (whole loops only,
-    // so the visible window is unchanged) so we never drift off the track end.
-    if (step && N > 1) {
-      var fwd  = (index - prev + N) % N;      // 0..N-1, steps right of current active
-      var base = anchor + fwd;
-      if (base >= N) base -= N;
-      if (base < 0)  base += N;
-      anchor = base;
-    }
-    positionTrack(animate !== false);
+    moveTrack(slot, animate !== false);
 
     // P1-2 documented behaviour on tab switch:
     //  - a pinned SKILL persists and is re-applied to the new panel;
@@ -247,42 +302,46 @@
     }
   }
 
-  // Clicking a tab scrolls the loop until it reaches the left edge.
+  // Clicking any tab (real or clone) scrolls the loop until it reaches the
+  // left edge. The slot is read straight from the DOM so clones navigate too.
   if (tabTrack) {
     tabTrack.addEventListener('click', function (e) {
-      var tab = e.target.closest('.resume-tab:not(.tab-clone)');
-      if (!tab) return;
-      activateTab(parseInt(tab.dataset.index, 10), true);
+      var tab = e.target.closest('.resume-tab');
+      if (!tab || !tabTrack.contains(tab)) return;
+      activateTab(Array.prototype.indexOf.call(tabTrack.children, tab), true);
     });
   }
 
-  // Keyboard navigation on the tablist (arrows wrap, Home/End jump) —
-  // "next/prev" always follow the loop direction, so it never reverses.
+  // Keyboard navigation on the tablist (arrows wrap, Home/End jump).
+  // "next/prev" always follow the loop direction, so the motion never
+  // reverses on itself; focus stays on the real tabs (clones are inert).
   if (tablist) {
     tablist.addEventListener('keydown', function (e) {
       var focusTab = document.activeElement;
       if (!focusTab || !focusTab.classList || !focusTab.classList.contains('resume-tab')) return;
       var i = parseInt(focusTab.dataset.index, 10); if (isNaN(i)) i = 0;
-      var next = null;
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = i + 1;      // +N wraps
-      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = i - 1 + N; // wrap to the other side
-      else if (e.key === 'Home') next = 0;
-      else if (e.key === 'End')  next = N - 1;
+      var target = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') target = i + 1;      // +N wraps
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') target = i - 1 + N; // loop to the other side
+      else if (e.key === 'Home') target = 0;
+      else if (e.key === 'End')  target = N - 1;
       else return;
       e.preventDefault();
-      logicalTabs[next % N].focus();
-      activateTab(next, true);
+      logicalTabs[target % N].focus();
+      activateTab(target, true);
     });
   }
 
-  // Re-measure the slot width and re-anchor when the layout changes size.
+  // Re-measure and re-anchor when the layout changes size (fonts, panel,
+  // viewport). Skipped mid-animation: the settle step will re-run for the
+  // new geometry, so a resize cannot strand trackBusy.
   window.addEventListener('resize', function () {
-    measureStep();
-    positionTrack(false);
+    measure();
+    if (!trackBusy) moveTrack(anchor, false);
   });
 
-  measureStep();
-  positionTrack(false);
+  measure();
+  if (tabTrack) moveTrack(0, false);
   paintActive();
 
   // ── Mobile: slide-out panel ────────────────────────────────────────────────
