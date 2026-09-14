@@ -998,7 +998,10 @@ footer {
 }
 
 /* ── Resume tabs: infinite loop, active tab anchored to the left ──
-   .resume-tabs  is a fixed-width clipping window (the visible strip).
+   .resume-tabs  is a clipping window (the visible strip). resume.js caps
+   its width at one full loop minus the widest tab — the widest window that
+   can never fit two copies of the same tab, at any anchor and even
+   mid-animation (the track is periodic, period = the full loop width).
    .resume-tab-track is a flex row that JS shifts with translateX so the
    active tab always sits at the left edge; JS also appends trailing
    clones so the strip wraps seamlessly.                        */
@@ -1018,11 +1021,8 @@ footer {
   transition: transform .5s cubic-bezier(.22, 1, .36, 1);
 }
 
-/* Non-interactive loop fillers appended by resume.js */
-.resume-tab.tab-clone {
-  pointer-events: none;
-  user-select: none;
-}
+/* Loop filler clones (appended by resume.js) are clickable and behave exactly
+   like their real tab; the window cap above keeps duplicates out of view. */
 
 @media (prefers-reduced-motion: reduce) {
   .resume-tab-track {
