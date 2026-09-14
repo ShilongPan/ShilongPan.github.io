@@ -19,5 +19,3 @@ skills:
   - mandarin
 ---
 Represent the best interests of graduate students in dealing with the faculty, the university, and other student groups. Protect recreational and office spaces reserved for our demographic. Plan various extracurricular events such as sports, group outings, and social events to promote student wellbeing. Apply leadership and collaborative skills to distribute work based on our dynamic availability as graduate students.
-
-Served on the graduate student society board, organizing social events, advocating for student concerns, and coordinating professional development workshops for chemistry graduate students.

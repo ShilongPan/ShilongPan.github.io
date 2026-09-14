@@ -9,4 +9,4 @@ skills:
   - communication
   - critical-thinking
 ---
-Appreciate interesting stories, productions, and ideas across a variety of mediums. Enjoy discussion with peers from diverse educational, cultural, and personal backgrounds to broaden my worldviews and understanding of other. Practice both experiencing things presently and critically analyzing concepts, themes, and components of art.
+Appreciate interesting stories, productions, and ideas across a variety of mediums. Enjoy discussion with peers from diverse educational, cultural, and personal backgrounds to broaden my worldviews and understanding of other. Practice experiencing things presently while also critically analyzing concepts, themes, and components of art.
