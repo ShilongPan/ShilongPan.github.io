@@ -10,4 +10,4 @@ skills:
   - linux
   - 3d-modelling
 ---
-Design and maintain 3D printers, troubleshoot mechanical and firmware issues, and create custom parts and prototypes for personal and lab projects.
+Operate, repair, and upgrade my 3D printer using open source hardware and software modifications. Design and manufacture solutions for fixing furniture, tools, and cameras. Prototype and refine parts for research and personal projects. Practice an environmentally-responsible repair and restore mindset instead of replacing things as they break.

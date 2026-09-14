@@ -16,4 +16,4 @@ skills:
   - adaptability
   - physical-training
 ---
-Passionate climber spanning bouldering, sport, and trad climbing. Continuously work on technique, build strength, and explore new routes in the Okanagan and beyond.
+Test my skill, strength, and problem solving against boulders across North America and in gyms. Propogate a welcoming, positive community to increase the reach of the sport. Research training, techniques, and programs to improve my ability. Maintain my fitness and social health.
