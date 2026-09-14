@@ -12,4 +12,4 @@ skills:
   - adaptability
   - english
 ---
-Represent the faculty at alumni events and networking sessions, sharing student perspectives and building connections between current students and the broader alumni community.
+Facilitate funding for students and graduate programs by creating media encouraging or appreciating donations and volunteering for  events. Lend my own voice and image to create meaningful, genuine messages to contributors. Learn about other alumni and how donor-provided funding benefited their learning and work.

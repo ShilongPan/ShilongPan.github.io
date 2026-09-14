@@ -8,4 +8,4 @@ skills:
   - physical-training
   - leadership
 ---
-Trained consistently for six years, achieving a black belt through dedicated practice in forms, sparring, and self-defense techniques, while developing discipline and perseverance.
+Develop physical fitness, discipline, and integrity to earn a black belt over six years of training. Memorize and perfect forms, practice sparring and various drills, and acquire a strong athletic base for future pursuits. Stand as a role model for younger participants by demonstrating skill, effort, and focus.

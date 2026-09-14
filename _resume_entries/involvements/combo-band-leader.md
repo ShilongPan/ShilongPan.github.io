@@ -10,4 +10,4 @@ skills:
   - collaboration
   - time-management
 ---
-Led a student jazz ensemble through rehearsals, arranged music, and organized performances at school events and community venues, developing leadership and musical skills.
+Play lead saxophone for jazz, concert, and combo bands. Lead rehearsals, keep the band focused, and practice consistently. Learn how to navigate differences in approach to music and practice. 

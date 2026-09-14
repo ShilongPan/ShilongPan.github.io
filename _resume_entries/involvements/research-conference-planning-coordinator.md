@@ -18,4 +18,4 @@ skills:
   - office-suite
   - english
 ---
-Coordinated logistics for an annual biophysics research conference, including venue booking, speaker communications, budget management, and on-site coordination for 200+ attendees.
+Plan a biophysics research conference to promote cross-laboratory collaboration between frontier researchers across North America. Direct a team to coordinate presenter schedules, keynote speaker logistics, student presentation opportunities, and logistical challenges. Delegate and redistribute work including funding application, advertisement, and catering while also considering the capacity of my team members.

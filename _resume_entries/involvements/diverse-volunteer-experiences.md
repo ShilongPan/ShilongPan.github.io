@@ -20,4 +20,4 @@ skills:
   - english
   - mandarin
 ---
-Participated in diverse volunteer opportunities including food bank support, community clean-up events, and mentorship programs for underprivileged youth across the Okanagan region.
+Contribute time and labor in various roles to diverse causes. Use skills as a public speaker, photographer, and leader to promote fundraisers and support vulnerable or isolated communities. Shape my own understanding of how people need and give aid to each other to build strong communities.

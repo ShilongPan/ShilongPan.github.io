@@ -15,4 +15,4 @@ skills:
   - prioritization
   - english
 ---
-Won the faculty-level competition by distilling complex research on extracellular vesicle analysis into a clear, engaging three-minute presentation for a non-specialist audience.
+Condense the context, reasoning, principles, and results of my research into a short, digestible presentation for a lay-audience. Evaluate the importance of different levels of detail in communicating the key ideas. Collaborate with fellow participants to review, critique, and improve each others' presentations.
