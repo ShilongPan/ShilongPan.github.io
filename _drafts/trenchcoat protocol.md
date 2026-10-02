@@ -46,4 +46,5 @@ The types of input I would be using for it are as follow
 
  A system with a minimal amount of dram and then an expandable amount of vram would be ideal. maybe using a small array of v100s
 
- 
+
+ For the time being, I need to build a dedicated inference machine first so I can work concurrently on my main machine, and for that I need money.
