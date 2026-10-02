@@ -272,13 +272,13 @@ p { color: var(--muted); margin-bottom: 1rem; }
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(29, 53, 87, 0.62), rgba(26, 26, 26, 0.52));
+  background: linear-gradient(135deg, rgba(29, 53, 87, 0.5), rgba(26, 26, 26, 0.6));
   z-index: 1;
   transition: opacity .3s ease;
 }
 
 .explore-banner:hover::before {
-  background: linear-gradient(135deg, rgba(29, 53, 87, 0.52), rgba(26, 26, 26, 0.42));
+  background: linear-gradient(135deg, rgba(29, 53, 87, 0.1), rgba(26, 26, 26, 0.2));
 }
 
 .explore-banner-content {
