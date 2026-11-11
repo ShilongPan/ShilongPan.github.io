@@ -1,8 +1,8 @@
 ---
 section: employment
-title: "Lab Manager"
-organization: "Lung Bioartifical Model Lab"
-dateline: "2026 - Present"
+title: Lab Manager
+organization: Lung Bioartifical Model Lab
+dateline: 2026 — Present
 order: 1
 skills:
   - project-management
