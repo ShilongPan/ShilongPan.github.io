@@ -1,9 +1,9 @@
 ---
 section: employment
-title: "Graduate Research Assistant"
-organization: "Li Single Molecule Mechanobiology Lab, UBCO"
-dateline: "2022 — 2025"
-order: 5
+title: Graduate Research Assistant
+organization: Li Single Molecule Mechanobiology Lab, UBCO
+dateline: 2022 — 2025
+order: 7
 skills:
   - teaching
   - project-management

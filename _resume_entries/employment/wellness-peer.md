@@ -1,9 +1,9 @@
 ---
 section: employment
-title: "Wellness Peer"
-organization: "Student Health and Wellness"
-dateline: "2021 — 2022"
-order: 6
+title: Wellness Peer
+organization: Student Health and Wellness
+dateline: 2021 — 2022
+order: 8
 skills:
   - project-management
   - communication

@@ -1,9 +1,9 @@
 ---
 section: employment
-title: "Undergraduate Research Assistant"
-organization: "PlantSMART Lab"
-dateline: "Spring 2020"
-order: 9
+title: Undergraduate Research Assistant
+organization: PlantSMART Lab
+dateline: Spring 2020
+order: 12
 skills:
   - scientific-communication
   - time-management

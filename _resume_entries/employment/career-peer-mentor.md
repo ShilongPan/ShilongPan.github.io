@@ -1,9 +1,9 @@
 ---
 section: employment
-title: "Career Peer Mentor"
-organization: "Career and Experience Office, UBC"
-dateline: "2020 — 2021"
-order: 8
+title: Career Peer Mentor
+organization: Career and Experience Office, UBC
+dateline: 2020 — 2021
+order: 11
 skills:
   - communication
   - collaboration

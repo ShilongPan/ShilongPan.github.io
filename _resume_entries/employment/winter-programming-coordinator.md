@@ -1,9 +1,9 @@
 ---
 section: employment
-title: "Winter Programming Coordinator"
-organization: "UBCO Global Engagement Office"
-dateline: "Winter 2018"
-order: 10
+title: Winter Programming Coordinator
+organization: UBCO Global Engagement Office
+dateline: Winter 2018
+order: 13
 skills:
   - communication
   - public-speaking

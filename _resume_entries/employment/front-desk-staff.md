@@ -1,9 +1,9 @@
 ---
 section: employment
-title: "Front Desk Staff"
-organization: "Gneiss Climbing"
-dateline: "2019 — Present"
-order: 4
+title: Front Desk Staff
+organization: Gneiss Climbing
+dateline: 2019 — Present
+order: 6
 skills:
   - leadership
   - supervision

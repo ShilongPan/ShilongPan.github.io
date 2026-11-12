@@ -1,9 +1,9 @@
 ---
 section: employment
-title: "Beginner/Intermediate Climbing Instructor"
-organization: "Gneiss Climbing"
-dateline: "2024 — Present"
-order: 3
+title: Beginner/Intermediate Climbing Instructor
+organization: Gneiss Climbing
+dateline: 2024 — Present
+order: 4
 skills:
   - supervision
   - mentorship

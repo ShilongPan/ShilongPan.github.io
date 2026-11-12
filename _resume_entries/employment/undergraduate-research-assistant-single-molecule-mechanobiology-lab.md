@@ -1,9 +1,9 @@
 ---
 section: employment
-title: "Undergraduate Research Assistant"
-organization: "Single Molecule Mechanobiology Lab"
-dateline: "2021 — 2022"
-order: 7
+title: Undergraduate Research Assistant
+organization: Single Molecule Mechanobiology Lab
+dateline: 2021 — 2022
+order: 10
 skills:
   - project-management
   - communication

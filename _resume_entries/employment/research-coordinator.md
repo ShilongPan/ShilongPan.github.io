@@ -3,7 +3,7 @@ section: employment
 title: Research Cluster Coordinator
 organization: UBCO Integrative Biosciences
 dateline: 2026 — Present
-order: 2
+order: 1
 skills:
   - project-management
   - communication

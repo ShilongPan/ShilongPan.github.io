@@ -1,9 +1,9 @@
 ---
 section: employment
-title: "Competitive Youth Climbing Instructor"
-organization: "Gneiss Climbing"
-dateline: "2023 — Present"
-order: 2
+title: Competitive Youth Climbing Instructor
+organization: Gneiss Climbing
+dateline: 2023 — Present
+order: 5
 skills:
   - supervision
   - mentorship

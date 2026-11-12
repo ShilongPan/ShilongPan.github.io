@@ -3,7 +3,7 @@ section: employment
 title: Lab Manager
 organization: Lung Bioartifical Model Lab
 dateline: 2026 — Present
-order: 1
+order: 2
 skills:
   - project-management
   - communication

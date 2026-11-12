@@ -1,9 +1,9 @@
 ---
 section: employment
-title: "Commercial Climbing Forerunner"
-organization: "Gneiss Climbing"
-dateline: "2026 — Present"
-order: 1
+title: Commercial Climbing Forerunner
+organization: Gneiss Climbing
+dateline: 2026 — Present
+order: 3
 skills:
   - communication
   - collaboration
