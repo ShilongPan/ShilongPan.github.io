@@ -1,7 +1,7 @@
 ---
 section: employment
 title: Lab Manager
-organization: Lung Bioartifical Model Lab
+organization: Osei Lung Bioartifical Model Lab, UBCO
 dateline: 2026 — Present
 order: 2
 skills:
